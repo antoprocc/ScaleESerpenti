@@ -34,6 +34,7 @@ public class Tabellone {
         //inserire scale e serpenti
         //TODO
 
+
         aggiungiCaselleSpeciali(regole);
     }
 

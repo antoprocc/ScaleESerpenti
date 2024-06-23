@@ -2,8 +2,9 @@ package org.example;
 
 import java.util.List;
 
-public class Partita {
+public final class Partita {
 
+    private static Partita istanza=null;
     private int numeroGiocatori;
     private Tabellone tabellone;
     private Regole regole;
@@ -11,12 +12,14 @@ public class Partita {
 
     private Partita() {}
 
-    public Partita(int numeroGiocatori, Tabellone tabellone, Regole regole, List<Giocatore> giocatori) {
-        this.numeroGiocatori = numeroGiocatori;
-        this.tabellone = tabellone;
-        this.regole = regole;
-        this.giocatori = giocatori;
+    public static synchronized Partita getInstance(){
+        if (istanza==null)
+            istanza=new Partita();
+        return istanza;
     }
+
+    //todo
+
 
 
 

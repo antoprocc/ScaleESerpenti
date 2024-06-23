@@ -2,13 +2,15 @@ package org.example.caselle;
 
 public class CasellaSeprente extends Casella {
 
-    private CasellaBase destinazione;
+    private int destinazione;
     private String tipo;
 
-    public CasellaSeprente(int r, int c){
+    public CasellaSeprente(int numeroCasella, int destinazione){
         super();
         tipo= "serpente";
-        //destinazione=new CasellaBase(r,c); #da sistemare
+        if( destinazione>=numeroCasella)
+            throw new RuntimeException("il serpente nella casella "+numeroCasella+" non è valido");
+        this.destinazione=destinazione;
     }
 
     public String getTipo() {

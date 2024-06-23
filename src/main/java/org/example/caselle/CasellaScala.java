@@ -2,13 +2,15 @@ package org.example.caselle;
 
 public class CasellaScala extends Casella {
 
-    private CasellaBase destinazione;
+    private int destinazione;
     private String tipo;
 
-    public CasellaScala(int r, int c){
+    public CasellaScala(int numeroCasella, int destinazione){
         super();
         tipo= "scala";
-        //destinazione=new CasellaBase(r,c); #da sistemare
+        if( destinazione<=numeroCasella)
+            throw new RuntimeException("la scala nella casella "+numeroCasella+" non è valida");
+        this.destinazione=destinazione;
 
     }
 

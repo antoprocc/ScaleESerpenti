@@ -4,7 +4,7 @@ public class CasellaPesca extends Casella{
 
     private String tipo;
 
-    public CasellaPesca(int r, int c){
+    public CasellaPesca(int numeroCasella){
         super();
         tipo= "sosta";
     }

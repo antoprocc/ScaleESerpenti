@@ -5,18 +5,19 @@ public abstract class Casella {
     private int riga;
     private int colonna;
     private int numeroCasella;
+    private boolean specializzabile;
 
     //(Tabellone.getNumeroCaselle)*riga + colonna + 1;
 
 
     public Casella(){
-        riga = 0;
-        colonna = 0;
+        numeroCasella=0;
+        specializzabile=true;
     }
 
-    public Casella(int r, int c){
-        riga=r;
-        colonna=c;
+    public Casella(int numeroCasella){
+        this.numeroCasella=numeroCasella;
+        specializzabile=true;
     }
 
     public int getRiga() {

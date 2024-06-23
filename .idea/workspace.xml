@@ -4,21 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="" />
+    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="Prima commit.">
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Giocatore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Partita.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Tabellone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/Casella.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaDadi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaMolla.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaPesca.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaScala.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaSeprente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaSosta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;antoprocc&quot;
+  }
+}</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/antoprocc/ScaleESerpenti.git&quot;,
+    &quot;accountId&quot;: &quot;8827b7cb-3323-418b-9ae9-c6a6649fb7e4&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2geJUEakiTzuTzT4sbOIuf2zqh8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -28,9 +63,20 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -50,11 +96,27 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716052123959</updated>
-      <workItem from="1716052125011" duration="3000" />
+      <workItem from="1716052125011" duration="923000" />
+      <workItem from="1716113484631" duration="2438000" />
+      <workItem from="1716283074474" duration="2408000" />
+      <workItem from="1719079227903" duration="7851000" />
     </task>
+    <task id="LOCAL-00001" summary="Prima commit.">
+      <option name="closed" value="true" />
+      <created>1716052781743</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716052781743</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Prima commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Prima commit." />
   </component>
 </project>

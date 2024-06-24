@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="modifiche al codice, bozza" />
+    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="modifiche al codice, bozza">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Giocatore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Partita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Partita.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Regole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Regole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Tabellone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Tabellone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/Casella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/Casella.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +90,7 @@
       <workItem from="1716052125011" duration="923000" />
       <workItem from="1716113484631" duration="2438000" />
       <workItem from="1716283074474" duration="2408000" />
-      <workItem from="1719079227903" duration="16547000" />
+      <workItem from="1719079227903" duration="21647000" />
     </task>
     <task id="LOCAL-00001" summary="Prima commit.">
       <option name="closed" value="true" />
@@ -125,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719167984241</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="modifiche al codice, bozza">
+      <option name="closed" value="true" />
+      <created>1719173208830</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719173208830</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

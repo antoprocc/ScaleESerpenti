@@ -1,5 +1,7 @@
 package org.example.caselle;
 
+import java.util.Objects;
+
 public abstract class Casella {
 
     private int riga;
@@ -7,7 +9,6 @@ public abstract class Casella {
     private int numeroCasella;
     private boolean specializzabile;
 
-    //(Tabellone.getNumeroCaselle)*riga + colonna + 1;
 
 
     public Casella(){
@@ -42,5 +43,17 @@ public abstract class Casella {
 
     public void setNumeroCasella(int numeroCasella) {
         this.numeroCasella = numeroCasella;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Casella casella)) return false;
+        return numeroCasella == casella.numeroCasella;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(numeroCasella);
     }
 }

@@ -16,7 +16,7 @@ public class Giocatore {
     public Giocatore(String nome){
         this.nome=nome;
         turno=0;
-        casella=new CasellaBase(0,0);
+        casella=new CasellaBase(0);
     }
 
     public Casella getCasella() {
@@ -62,5 +62,9 @@ public class Giocatore {
                 ", nome='" + nome + '\'' +
                 ", turno=" + turno +
                 '}';
+    }
+
+    public void muovi(int passi) {
+        //TODO
     }
 }

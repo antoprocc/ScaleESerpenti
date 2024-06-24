@@ -64,7 +64,16 @@ public class Giocatore {
                 '}';
     }
 
-    public void muovi(int passi) {
-        //TODO
+    public void muovi(int passi, int traguardo) {
+        int casellaCorrente = this.getCasella().getNumeroCasella();
+        int destinazione = casellaCorrente+passi;
+        if(destinazione<=traguardo)
+            this.casella.setNumeroCasella(destinazione);
+        else{
+            int indietro=destinazione-traguardo;
+            this.casella.setNumeroCasella(traguardo-indietro);
+        }
     }
+
+
 }

@@ -43,7 +43,7 @@ public final class Partita {
         Giocatore corrente = giocatori.get(giocatoreCorrente);
         int numeroDadi = tabellone.getRegole().getNumeroDadi();
         int passi = lanciaDadi(numeroDadi);
-        muoviGiocatore(corrente,passi);
+        muoviGiocatore(corrente,passi,traguardo.getNumeroCasella());
         verificaVittoria(corrente);
         //comunica fine del turno TODO
         giocatoreCorrente=(giocatoreCorrente+1)%numeroGiocatori;
@@ -56,8 +56,8 @@ public final class Partita {
         }
     }
 
-    private void muoviGiocatore(Giocatore corrente, int passi) {
-        corrente.muovi(passi);
+    private void muoviGiocatore(Giocatore corrente, int passi, int traguardo) {
+        corrente.muovi(passi, traguardo);
         tabellone.effettoCasella(corrente.getCasella());
     }
 

@@ -5,6 +5,7 @@ public class Regole {
     private int numeroDadi;
     private final int righe;
     private final int colonne;
+    private int numeroGiocatori;
 
     public Regole(int righe, int colonne, int numeroDadi) {
         this.righe = righe;
@@ -22,5 +23,9 @@ public class Regole {
 
     public int getColonne() {
         return colonne;
+    }
+
+    public int getNumeroGiocatori() {
+        return numeroGiocatori;
     }
 }

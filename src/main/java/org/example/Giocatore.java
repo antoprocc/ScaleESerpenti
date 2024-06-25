@@ -11,7 +11,7 @@ public class Giocatore {
     private String nome;
     private int turno;
 
-    private Giocatore(){};
+    private Giocatore(){}
 
     public Giocatore(String nome){
         this.nome=nome;

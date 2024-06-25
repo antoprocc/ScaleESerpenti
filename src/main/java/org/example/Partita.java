@@ -2,6 +2,9 @@ package org.example;
 
 import org.example.caselle.Casella;
 import org.example.caselle.CasellaBase;
+import org.example.dadi.DadoDoppioStrategy;
+import org.example.dadi.DadoSingoloStrategy;
+import org.example.dadi.DadoStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,61 +12,68 @@ import java.util.List;
 public final class Partita {
 
     private static Partita istanza=null;
-    private int numeroGiocatori;
     private Tabellone tabellone;
     private List<Giocatore> giocatori;
     private int giocatoreCorrente;
     private Casella traguardo;
+    private DadoStrategy dadoStrategy;
 
-    private Partita() {}
-
-    public static synchronized Partita getInstance(){
-        if (istanza==null)
-            istanza=new Partita();
-        return istanza;
-    }
-
-    public void configuraPartita(Tabellone tabellone, int numeroGiocatori) {
+    private Partita(Tabellone tabellone) {
         this.tabellone = tabellone;
-        this.numeroGiocatori = numeroGiocatori;
         this.giocatori = new ArrayList<>();
         this.giocatoreCorrente = 0;
         traguardo=new CasellaBase(tabellone.getRegole().getRighe()* tabellone.getRegole().getColonne());
-        inizializzaGiocatori();
+
+        if(tabellone.getRegole().getNumeroDadi()==1)
+            this.dadoStrategy=new DadoSingoloStrategy();
+        else if (tabellone.getRegole().getNumeroDadi()==2)
+            this.dadoStrategy=new DadoDoppioStrategy();
+        else
+            //notifica errore nel numero dei dadi TODO
+
+            inizializzaGiocatori();
     }
 
+    public static synchronized Partita getInstance(Tabellone tabellone, int numeroGiocatori){
+        if (istanza==null)
+            istanza=new Partita(tabellone);
+        return istanza;
+    }
+
+
     private void inizializzaGiocatori() {
+        int numeroGiocatori = this.tabellone.getRegole().getNumeroGiocatori();
         for (int i = 1; i <= numeroGiocatori; i++) {
             Giocatore giocatore = new Giocatore("P " + i);
             giocatori.add(giocatore);
         }
     }
 
-    private void turno(){
-        Giocatore corrente = giocatori.get(giocatoreCorrente);
-        int numeroDadi = tabellone.getRegole().getNumeroDadi();
-        int passi = lanciaDadi(numeroDadi);
-        muoviGiocatore(corrente,passi,traguardo.getNumeroCasella());
-        verificaVittoria(corrente);
+    private void turno() {
+        int numeroGiocatori = this.tabellone.getRegole().getNumeroGiocatori();
+        Giocatore giocatore = giocatori.get(giocatoreCorrente);
+        int passi;
+
+        do {
+            passi = dadoStrategy.lancia();
+            muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella());
+        } while (passi == 12);
+
+        verificaVittoria(giocatore);
         //comunica fine del turno TODO
-        giocatoreCorrente=(giocatoreCorrente+1)%numeroGiocatori;
+        giocatoreCorrente = (giocatoreCorrente + 1) % numeroGiocatori;
 
     }
 
-    private void verificaVittoria(Giocatore corrente) {
-        if(corrente.getCasella().equals(traguardo)){
-            //comunica vittoria di corrente
+    private void verificaVittoria(Giocatore giocatore) {
+        if(giocatore.getCasella().equals(traguardo)){
+            //comunica vittoria di corrente TODO
         }
     }
 
-    private void muoviGiocatore(Giocatore corrente, int passi, int traguardo) {
-        corrente.muovi(passi, traguardo);
-        tabellone.effettoCasella(corrente.getCasella());
-    }
-
-    private int lanciaDadi(int numeroDadi) {
-        //TODO
-        return 0;
+    private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo) {
+        giocatore.muovi(passi, traguardo);
+        tabellone.effettoCasella(giocatore.getCasella());
     }
 
 

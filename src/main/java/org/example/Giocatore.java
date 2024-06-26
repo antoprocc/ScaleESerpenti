@@ -10,6 +10,8 @@ public class Giocatore {
     private Casella casella;
     private String nome;
     private int turno;
+    private int divietoDiSosta;
+    private int turniDaSaltare;
 
     private Giocatore(){}
 
@@ -17,7 +19,30 @@ public class Giocatore {
         this.nome=nome;
         turno=0;
         casella=new CasellaBase(0);
+        divietoDiSosta =0;
+        turniDaSaltare=0;
     }
+
+    public void muovi(int passi, int traguardo) {
+        int casellaCorrente = this.getCasella().getNumeroCasella();
+        int destinazione = casellaCorrente+passi;
+        if(destinazione<=traguardo)
+            this.casella.setNumeroCasella(destinazione);
+        else{
+            int indietro=destinazione-traguardo;
+            this.casella.setNumeroCasella(traguardo-indietro);
+        }
+    }
+
+    public int getTurniDaSaltare() {return turniDaSaltare;}
+
+    public void setTurniDaSaltare(int turniDaSaltare) {this.turniDaSaltare = turniDaSaltare;}
+
+    public int getDivietoDiSosta() {
+        return divietoDiSosta;
+    }
+
+    public void setDivietoDiSosta(int divietoDiSosta) {this.divietoDiSosta = divietoDiSosta;}
 
     public Casella getCasella() {
         return casella;
@@ -29,10 +54,6 @@ public class Giocatore {
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getTurno() {
@@ -64,16 +85,6 @@ public class Giocatore {
                 '}';
     }
 
-    public void muovi(int passi, int traguardo) {
-        int casellaCorrente = this.getCasella().getNumeroCasella();
-        int destinazione = casellaCorrente+passi;
-        if(destinazione<=traguardo)
-            this.casella.setNumeroCasella(destinazione);
-        else{
-            int indietro=destinazione-traguardo;
-            this.casella.setNumeroCasella(traguardo-indietro);
-        }
-    }
 
 
 }

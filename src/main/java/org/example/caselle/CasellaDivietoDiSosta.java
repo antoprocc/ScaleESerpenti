@@ -3,21 +3,23 @@ package org.example.caselle;
 import org.example.Giocatore;
 import org.example.dadi.DadoStrategy;
 
-public class CasellaBase extends Casella {
+public class CasellaDivietoDiSosta extends Casella{
 
     private String tipo;
 
-    public CasellaBase(int numeroCasella) {
+    public CasellaDivietoDiSosta(int numeroCasella){
         super();
-        tipo="base";
+        tipo= "DivietoDiSosta";
     }
 
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
-        System.out.println("Casella base");
+        giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta()+1);
+        System.out.println("utilizza carta divieto di sosta");
     }
 
     public String getTipo() {
         return tipo;
     }
 }
+

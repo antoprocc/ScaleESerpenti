@@ -31,10 +31,10 @@ public final class Partita {
         else
             //notifica errore nel numero dei dadi TODO
 
-            inizializzaGiocatori();
+        inizializzaGiocatori();
     }
 
-    public static synchronized Partita getInstance(Tabellone tabellone, int numeroGiocatori){
+    public static synchronized Partita getInstance(Tabellone tabellone){
         if (istanza==null)
             istanza=new Partita(tabellone);
         return istanza;
@@ -56,7 +56,7 @@ public final class Partita {
 
         do {
             passi = dadoStrategy.lancia();
-            muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella());
+            muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(),dadoStrategy);
         } while (passi == 12);
 
         verificaVittoria(giocatore);
@@ -71,9 +71,9 @@ public final class Partita {
         }
     }
 
-    private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo) {
+    private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy) {
         giocatore.muovi(passi, traguardo);
-        tabellone.effettoCasella(giocatore.getCasella());
+        giocatore.getCasella().effetto(giocatore,dadoStrategy,traguardo,passi);
     }
 
 

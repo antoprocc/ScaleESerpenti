@@ -2,15 +2,29 @@ package org.example;
 
 public class Regole {
 
-    private int numeroDadi;
+    private final int numeroDadi;
     private final int righe;
     private final int colonne;
-    private int numeroGiocatori;
+    private final int numeroGiocatori;
+    private final int casellaPanchina;
+    private final int casellaLocanda;
+    private final int casellaDadi;
+    private final int casellaMolla;
+    private final int casellaPesca;
+    private final int casellaDivietoDiSosta;
 
-    public Regole(int righe, int colonne, int numeroDadi) {
+    public Regole(int righe, int colonne, int numeroDadi, int numeroGiocatori, int casellaPanchina, int casellaLocanda,
+                  int casellaDadi, int casellaMolla, int casellaPesca, int casellaDivietoDiSosta) {
         this.righe = righe;
         this.colonne = colonne;
         this.numeroDadi=numeroDadi;
+        this.numeroGiocatori=numeroGiocatori;
+        this.casellaPanchina = casellaPanchina;
+        this.casellaLocanda=casellaLocanda;
+        this.casellaDadi = casellaDadi;
+        this.casellaMolla= casellaMolla;
+        this.casellaPesca = casellaPesca;
+        this.casellaDivietoDiSosta = casellaDivietoDiSosta;
     }
 
     public int getNumeroDadi() {
@@ -28,4 +42,16 @@ public class Regole {
     public int getNumeroGiocatori() {
         return numeroGiocatori;
     }
+
+    public int getCasellaPanchina() { return casellaPanchina; }
+
+    public int getCasellaDadi() { return casellaDadi; }
+
+    public int getCasellaPesca() { return casellaPesca; }
+
+    public int getCasellaDivietoDiSosta() { return casellaDivietoDiSosta; }
+
+    public int getCasellaLocanda() {return casellaLocanda;}
+
+    public int getCasellaMolla() {return casellaMolla;}
 }

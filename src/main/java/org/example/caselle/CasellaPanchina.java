@@ -3,21 +3,24 @@ package org.example.caselle;
 import org.example.Giocatore;
 import org.example.dadi.DadoStrategy;
 
-public class CasellaBase extends Casella {
+public class CasellaPanchina extends Casella{
 
     private String tipo;
 
-    public CasellaBase(int numeroCasella) {
+    public CasellaPanchina(int numeroCasella){
         super();
-        tipo="base";
+        tipo= "panchina";
     }
 
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
-        System.out.println("Casella base");
+        giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare()+1);
+        System.out.println("casella panchina");
     }
+
 
     public String getTipo() {
         return tipo;
     }
+
 }

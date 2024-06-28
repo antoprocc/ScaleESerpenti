@@ -1,6 +1,7 @@
 package org.example.caselle;
 
 import org.example.Giocatore;
+import org.example.Tabellone;
 import org.example.dadi.DadoStrategy;
 
 public class CasellaLocanda extends Casella{
@@ -13,7 +14,7 @@ public class CasellaLocanda extends Casella{
     }
 
     @Override
-    public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
+    public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
         giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare()+1);
         System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella panchina");
     }

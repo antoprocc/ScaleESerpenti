@@ -1,6 +1,7 @@
 package org.example.caselle;
 
 import org.example.Giocatore;
+import org.example.Tabellone;
 import org.example.dadi.DadoStrategy;
 
 import java.util.Objects;
@@ -10,6 +11,7 @@ public abstract class Casella {
     private int riga;
     private int colonna;
     private int numeroCasella;
+    private String tipo;
 
 
 
@@ -37,6 +39,10 @@ public abstract class Casella {
         this.colonna = colonna;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
     public int getNumeroCasella() {
         return numeroCasella;
     }
@@ -57,5 +63,5 @@ public abstract class Casella {
         return Objects.hashCode(numeroCasella);
     }
 
-    public abstract void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi);
+    public abstract void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone);
 }

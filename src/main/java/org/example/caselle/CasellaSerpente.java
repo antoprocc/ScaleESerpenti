@@ -1,14 +1,15 @@
 package org.example.caselle;
 
 import org.example.Giocatore;
+import org.example.Tabellone;
 import org.example.dadi.DadoStrategy;
 
-public class CasellaSeprente extends Casella {
+public class CasellaSerpente extends Casella {
 
     private int destinazione;
     private String tipo;
 
-    public CasellaSeprente(int numeroCasella, int destinazione){
+    public CasellaSerpente(int numeroCasella, int destinazione){
         super(numeroCasella);
         tipo= "serpente";
         if( destinazione>=numeroCasella)
@@ -21,8 +22,9 @@ public class CasellaSeprente extends Casella {
     }
 
     @Override
-    public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
+    public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
         giocatore.getCasella().setNumeroCasella(destinazione);
-        System.out.println("il giocatore "+giocatore.getNome()+"è finito su una casella serpente");
+        System.out.println("il giocatore "+giocatore.getNome()+"è finito su una casella serpente ed è andato sulla casella"
+        + destinazione);
     }
 }

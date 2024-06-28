@@ -1,6 +1,7 @@
 package org.example.caselle;
 
 import org.example.Giocatore;
+import org.example.Tabellone;
 import org.example.dadi.DadoStrategy;
 
 public class CasellaDadi extends Casella{
@@ -13,19 +14,19 @@ public class CasellaDadi extends Casella{
     }
 
     @Override
-    public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
+    public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
         int passiDaFare;
 
         do {
             passiDaFare = dadoStrategy.lancia();
-            muoviGiocatore(giocatore, passiDaFare, traguardo, dadoStrategy);
+            muoviGiocatore(giocatore, passiDaFare, traguardo, dadoStrategy, tabellone);
         } while (passiDaFare == 12);
         System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella dadi");
     }
 
-    private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy) {
-        giocatore.muovi(passi, traguardo);
-        giocatore.getCasella().effetto(giocatore,dadoStrategy, traguardo, passi);
+    private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy, Tabellone tabellone) {
+        giocatore.muovi(passi, traguardo, tabellone);
+        giocatore.getCasella().effetto(giocatore,dadoStrategy, traguardo, passi, tabellone);
     }
 
     public String getTipo() {

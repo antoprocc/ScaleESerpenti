@@ -6,7 +6,7 @@ public interface DadoStrategy {
 
     Random random = new Random();
 
-    public int lancia();
+    int lancia();
 
 
 }

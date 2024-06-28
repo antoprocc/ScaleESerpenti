@@ -17,9 +17,10 @@ public class Tabellone {
 
         tabellone = new HashMap<>();
         this.regole=regole;
+        inizializzaTabellone();
     }
 
-    private void inizializzaTabellone(Regole regole){
+    private void inizializzaTabellone(){
 
         int righe = regole.getRighe();
         int colonne = regole.getColonne();

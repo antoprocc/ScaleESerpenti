@@ -32,6 +32,7 @@ public class Giocatore {
             int indietro=destinazione-traguardo;
             this.casella.setNumeroCasella(traguardo-indietro);
         }
+        System.out.println("il giocatore "+getNome()+" va dalla casella "+casellaCorrente+" alla casella "+this.casella.getNumeroCasella());
     }
 
     public int getTurniDaSaltare() {return turniDaSaltare;}

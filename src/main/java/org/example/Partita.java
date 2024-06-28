@@ -21,12 +21,14 @@ public final class Partita {
     private Casella traguardo;
     private DadoStrategy dadoStrategy;
     private boolean finita;
+    private Giocatore vincitore;
 
     private Partita(Tabellone tabellone) {
         this.tabellone = tabellone;
         this.giocatori = new ArrayList<>();
         this.giocatoreIterator = new GiocatoreListIterator(giocatori);
         this.finita=false;
+        this.vincitore=null;
         traguardo=new CasellaBase(tabellone.getRegole().getRighe()* tabellone.getRegole().getColonne());
 
         if(tabellone.getRegole().getNumeroDadi()==1)
@@ -34,9 +36,9 @@ public final class Partita {
         else if (tabellone.getRegole().getNumeroDadi()==2)
             this.dadoStrategy=new DadoDoppioStrategy();
         else
+            System.out.println("numero dadi non corretto");
             //notifica errore nel numero dei dadi TODO
 
-        inizializzaGiocatori();
     }
 
     public static synchronized Partita getInstance(Tabellone tabellone){
@@ -49,8 +51,9 @@ public final class Partita {
     private void inizializzaGiocatori() {
         int numeroGiocatori = this.tabellone.getRegole().getNumeroGiocatori();
         for (int i = 1; i <= numeroGiocatori; i++) {
-            Giocatore giocatore = new Giocatore("P " + i);
+            Giocatore giocatore = new Giocatore("P" + i);
             giocatori.add(giocatore);
+            System.out.println("Giocatore "+i+" aggiunto");
         }
     }
 
@@ -59,9 +62,13 @@ public final class Partita {
         if (giocatore.getTurniDaSaltare() > 0){
             if(giocatore.getDivietoDiSosta()==0){
                 giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() - 1);
+                System.out.println("Il giocatore "+giocatore.getNome()+" salta il turno, "+giocatore.getTurniDaSaltare()
+                        +" turni rimasti da saltare");
                 return;
-            }else
-                giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta()-1);
+            }else {
+                giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta() - 1);
+                System.out.println("Il giocatore" +giocatore.getNome()+"usa carta divieto di sosta e può tirare i dadi");
+            }
         }
 
 
@@ -71,6 +78,8 @@ public final class Partita {
         do {
             if (tabellone.getRegole().isUnDadoAllaFine() &&giocatore.getCasella().getNumeroCasella() > traguardo.getNumeroCasella()-6) {
                 passi = random.nextInt(6) + 1;
+                muoviGiocatore(giocatore,passi, traguardo.getNumeroCasella(),dadoStrategy);
+                System.out.println("Il giocatore tira un solo dado per la regola lancio di un solo dado"+giocatore.getNome());
             } else {
                 passi = dadoStrategy.lancia();
                 muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(), dadoStrategy);
@@ -85,6 +94,7 @@ public final class Partita {
     private void verificaVittoria(Giocatore giocatore) {
         if(giocatore.getCasella().equals(traguardo)){
             this.finita=true;
+            this.vincitore=giocatore;
             //comunica la vittoria di giocatore TODO
         }
     }
@@ -92,16 +102,18 @@ public final class Partita {
     private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy) {
         giocatore.muovi(passi, traguardo);
         giocatore.getCasella().effetto(giocatore,dadoStrategy,traguardo,passi);
+
     }
 
-    private String avviaPartita() {
+    public void avviaPartita() {
+        inizializzaGiocatori();
         Giocatore giocatore = null;
         while (!finita) {
             giocatore = (Giocatore) giocatoreIterator.next();
             turno(giocatore);
         }
         //COMUNICA WIN
-        return giocatore.getNome();
+        System.out.println("Vittoria del giocatore "+vincitore.getNome());
     }
 
 

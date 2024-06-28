@@ -23,17 +23,21 @@ public class Giocatore {
         turniDaSaltare=0;
     }
 
-    public void muovi(int passi, int traguardo) {
+    public void muovi(int passi, int traguardo, Tabellone tabellone) {
         int casellaCorrente = this.getCasella().getNumeroCasella();
-        int destinazione = casellaCorrente+passi;
-        if(destinazione<=traguardo)
-            this.casella.setNumeroCasella(destinazione);
-        else{
-            int indietro=destinazione-traguardo;
-            this.casella.setNumeroCasella(traguardo-indietro);
+        int destinazione = casellaCorrente + passi;
+        if (destinazione > traguardo) {
+            int indietro = destinazione - traguardo;
+            destinazione = traguardo - indietro;
         }
-        System.out.println("il giocatore "+getNome()+" va dalla casella "+casellaCorrente+" alla casella "+this.casella.getNumeroCasella());
+        this.casella.setNumeroCasella(destinazione);
+        // Ottieni la casella effettiva dal tabellone
+        Casella nuovaCasella = tabellone.getCasella(destinazione);
+        this.setCasella(nuovaCasella);
+        System.out.println("il giocatore " + getNome() + " va dalla casella " + casellaCorrente + " alla casella " + destinazione);
     }
+
+
 
     public int getTurniDaSaltare() {return turniDaSaltare;}
 

@@ -100,8 +100,8 @@ public final class Partita {
     }
 
     private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy) {
-        giocatore.muovi(passi, traguardo);
-        giocatore.getCasella().effetto(giocatore,dadoStrategy,traguardo,passi);
+        giocatore.muovi(passi, traguardo, tabellone);
+        giocatore.getCasella().effetto(giocatore,dadoStrategy,traguardo,passi, tabellone);
 
     }
 

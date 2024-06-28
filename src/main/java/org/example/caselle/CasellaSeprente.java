@@ -9,7 +9,7 @@ public class CasellaSeprente extends Casella {
     private String tipo;
 
     public CasellaSeprente(int numeroCasella, int destinazione){
-        super();
+        super(numeroCasella);
         tipo= "serpente";
         if( destinazione>=numeroCasella)
             throw new RuntimeException("il serpente nella casella "+numeroCasella+" non è valido");
@@ -23,6 +23,6 @@ public class CasellaSeprente extends Casella {
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
         giocatore.getCasella().setNumeroCasella(destinazione);
-        System.out.println("casella serpente");
+        System.out.println("il giocatore "+giocatore.getNome()+"è finito su una casella serpente");
     }
 }

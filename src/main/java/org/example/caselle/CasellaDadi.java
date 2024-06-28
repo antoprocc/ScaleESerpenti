@@ -8,7 +8,7 @@ public class CasellaDadi extends Casella{
     private String tipo;
 
     public CasellaDadi(int numeroCasella){
-        super();
+        super(numeroCasella);
         tipo= "dadi";
     }
 
@@ -20,7 +20,7 @@ public class CasellaDadi extends Casella{
             passiDaFare = dadoStrategy.lancia();
             muoviGiocatore(giocatore, passiDaFare, traguardo, dadoStrategy);
         } while (passiDaFare == 12);
-        System.out.println("casella dadi");
+        System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella dadi");
     }
 
     private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy) {

@@ -10,7 +10,7 @@ public class CasellaScala extends Casella {
     private String tipo;
 
     public CasellaScala(int numeroCasella, int destinazione){
-        super();
+        super(numeroCasella);
         tipo= "scala";
         if( destinazione<=numeroCasella)
             throw new RuntimeException("la scala nella casella "+numeroCasella+" non è valida");
@@ -25,6 +25,6 @@ public class CasellaScala extends Casella {
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
         giocatore.getCasella().setNumeroCasella(destinazione);
-        System.out.println("casella scala");
+        System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella scala");
     }
 }

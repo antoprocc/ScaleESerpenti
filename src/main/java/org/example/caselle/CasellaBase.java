@@ -8,13 +8,13 @@ public class CasellaBase extends Casella {
     private String tipo;
 
     public CasellaBase(int numeroCasella) {
-        super();
+        super(numeroCasella);
         tipo="base";
     }
 
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi) {
-        System.out.println("Casella base");
+        System.out.println("il giocatore "+giocatore.getNome()+" è finito su una Casella base");
     }
 
     public String getTipo() {

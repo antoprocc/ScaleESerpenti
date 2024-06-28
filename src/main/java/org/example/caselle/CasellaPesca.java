@@ -10,7 +10,7 @@ public class CasellaPesca extends Casella{
     private String tipo;
 
     public CasellaPesca(int numeroCasella){
-        super();
+        super(numeroCasella);
         tipo= "sosta";
     }
 
@@ -21,11 +21,11 @@ public class CasellaPesca extends Casella{
         switch (carta){
             case 0: //panchina
                 giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare()+1);
-                System.out.println("Hai pescato: carta panchina");
+                System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella pesca una carta...Ha pescato: carta panchina");
                 break;
             case 1: //locanda
                 giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare()+3);
-                System.out.println("Hai pescato: carta locanda");
+                System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella pesca una carta...Ha pescato: carta locanda");
                 break;
             case 2: //dadi
                 int passiDaFare;
@@ -34,11 +34,11 @@ public class CasellaPesca extends Casella{
                     passiDaFare = dadoStrategy.lancia();
                     muoviGiocatore(giocatore, passiDaFare, traguardo, dadoStrategy);
                 } while (passiDaFare == 12);
-                System.out.println("Hai pescato: carta dadi");
+                System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella pesca una carta...Ha pescato: carta dadi");
                 break;
             case 3: //molla
                 muoviGiocatore(giocatore, passi, traguardo, dadoStrategy);
-                System.out.println("Hai pescato: carta molla");
+                System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella pesca una carta...Ha pescato: carta molla");
                 break;
         }
     }

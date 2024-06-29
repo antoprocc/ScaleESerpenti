@@ -8,16 +8,12 @@ import java.util.Objects;
 public class Giocatore {
 
     private Casella casella;
-    private String nome;
-    private int turno;
+    private final String nome;
     private int divietoDiSosta;
     private int turniDaSaltare;
 
-    private Giocatore(){}
-
     public Giocatore(String nome){
         this.nome=nome;
-        turno=0;
         casella=new CasellaBase(0);
         divietoDiSosta =0;
         turniDaSaltare=0;
@@ -62,24 +58,17 @@ public class Giocatore {
         return nome;
     }
 
-    public int getTurno() {
-        return turno;
-    }
-
-    public void setTurno(int turno) {
-        this.turno = turno;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Giocatore giocatore)) return false;
-        return turno == giocatore.turno && Objects.equals(casella, giocatore.casella) && Objects.equals(nome, giocatore.nome);
+        return Objects.equals(casella, giocatore.casella) && Objects.equals(nome, giocatore.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(casella, nome, turno);
+        return Objects.hash(casella, nome);
     }
 
     @Override
@@ -87,7 +76,6 @@ public class Giocatore {
         return "Giocatore{" +
                 "casella=" + casella +
                 ", nome='" + nome + '\'' +
-                ", turno=" + turno +
                 '}';
     }
 

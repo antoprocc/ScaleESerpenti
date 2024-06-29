@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class CasellaPesca extends Casella {
 
-    private final String tipo;
     private String tipoPescato;
 
     public CasellaPesca(int numeroCasella) {
@@ -54,9 +53,6 @@ public class CasellaPesca extends Casella {
         giocatore.getCasella().effetto(giocatore, dadoStrategy, traguardo, passi, tabellone);
     }
 
-    public String getTipo() {
-        return tipo;
-    }
 
     @Override
     public String toString() {

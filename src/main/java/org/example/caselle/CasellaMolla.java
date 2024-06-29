@@ -6,7 +6,6 @@ import org.example.dadi.DadoStrategy;
 
 public class CasellaMolla extends Casella{
 
-    private String tipo;
 
     public CasellaMolla(int numeroCasella){
         super(numeroCasella);
@@ -24,9 +23,6 @@ public class CasellaMolla extends Casella{
         giocatore.getCasella().effetto(giocatore,dadoStrategy, traguardo, passi, tabellone);
     }
 
-    public String getTipo() {
-        return tipo;
-    }
 
     @Override
     public String toString() {return tipo;}

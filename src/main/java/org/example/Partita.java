@@ -16,14 +16,14 @@ import java.util.Scanner;
 public final class Partita {
 
     private static Partita istanza = null;
-    private Tabellone tabellone;
-    private List<Giocatore> giocatori;
-    private GiocatoreIterator giocatoreIterator;
-    private Casella traguardo;
+    private final Tabellone tabellone;
+    private final List<Giocatore> giocatori;
+    private final GiocatoreIterator giocatoreIterator;
+    private final Casella traguardo;
     private DadoStrategy dadoStrategy;
     private boolean finita;
     private Giocatore vincitore;
-    private boolean automatica;
+    private final boolean automatica;
 
     private Partita(Tabellone tabellone, boolean automatica) {
         this.tabellone = tabellone;
@@ -73,7 +73,7 @@ public final class Partita {
             }
         }
 
-        int passi = 0;
+        int passi;
         Random random = new Random();
 
         do {
@@ -110,7 +110,7 @@ public final class Partita {
 
     public void avviaPartita() {
         inizializzaGiocatori();
-        Giocatore giocatore = null;
+        Giocatore giocatore;
         Scanner scanner = new Scanner(System.in);
 
         while (!finita) {

@@ -6,7 +6,6 @@ import org.example.dadi.DadoStrategy;
 
 public class CasellaPanchina extends Casella{
 
-    private String tipo;
 
     public CasellaPanchina(int numeroCasella){
         super(numeroCasella);
@@ -19,9 +18,6 @@ public class CasellaPanchina extends Casella{
     }
 
 
-    public String getTipo() {
-        return tipo;
-    }
 
     @Override
     public String toString() {return tipo;}

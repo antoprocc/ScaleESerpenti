@@ -8,10 +8,8 @@ import java.util.Objects;
 
 public abstract class Casella {
 
-    private int riga;
-    private int colonna;
     private int numeroCasella;
-    private String tipo;
+    protected String tipo;
 
 
 
@@ -23,25 +21,6 @@ public abstract class Casella {
         this.numeroCasella=numeroCasella;
     }
 
-    public int getRiga() {
-        return riga;
-    }
-
-    public void setRiga(int riga) {
-        this.riga = riga;
-    }
-
-    public int getColonna() {
-        return colonna;
-    }
-
-    public void setColonna(int colonna) {
-        this.colonna = colonna;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
 
     public int getNumeroCasella() {
         return numeroCasella;

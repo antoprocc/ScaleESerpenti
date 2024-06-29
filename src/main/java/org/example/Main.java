@@ -5,8 +5,8 @@ public class Main {
 
         System.out.println("inizio");
 
-        Regole regole = new Regole(10,10,2,4,2,2,2,
-                2,2,2,true,false);
+        Regole regole = new Regole(6,8,1,2,2,2,2,
+                2,2,2,true,true);
 
         System.out.println("regole impostate");
 
@@ -16,11 +16,12 @@ public class Main {
         System.out.println("tabellone creato");
 
 
-        Partita partita=Partita.getInstance(tabellone);
+        Partita partita=Partita.getInstance(tabellone,false);
 
         System.out.println("partita creata");
 
         partita.avviaPartita();
+
 
     }
 }

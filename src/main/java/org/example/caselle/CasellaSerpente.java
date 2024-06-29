@@ -6,8 +6,7 @@ import org.example.dadi.DadoStrategy;
 
 public class CasellaSerpente extends Casella {
 
-    private int destinazione;
-    private String tipo;
+    private final int destinazione;
 
     public CasellaSerpente(int numeroCasella, int destinazione){
         super(numeroCasella);
@@ -17,9 +16,6 @@ public class CasellaSerpente extends Casella {
         this.destinazione=destinazione;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
 
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {

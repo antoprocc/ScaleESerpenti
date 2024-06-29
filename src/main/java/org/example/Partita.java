@@ -62,12 +62,13 @@ public final class Partita {
         if (giocatore.getTurniDaSaltare() > 0){
             if(giocatore.getDivietoDiSosta()==0){
                 giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() - 1);
-                System.out.println("Il giocatore "+giocatore.getNome()+" salta il turno, "+giocatore.getTurniDaSaltare()
+                System.out.println("\nIl giocatore "+giocatore.getNome()+" salta il turno, "+giocatore.getTurniDaSaltare()
                         +" turni rimasti da saltare");
                 return;
             }else {
                 giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta() - 1);
-                System.out.println("Il giocatore" +giocatore.getNome()+"usa carta divieto di sosta e può tirare i dadi");
+                giocatore.setTurniDaSaltare(0);
+                System.out.println("\nIl giocatore " +giocatore.getNome()+" usa carta divieto di sosta e può tirare i dadi");
             }
         }
 
@@ -76,10 +77,12 @@ public final class Partita {
         Random random = new Random();
 
         do {
+            System.out.println("\nTurno giocatore "+giocatore.getNome());
             if (tabellone.getRegole().isUnDadoAllaFine() &&giocatore.getCasella().getNumeroCasella() > traguardo.getNumeroCasella()-6) {
                 passi = random.nextInt(6) + 1;
+                System.out.println("Il giocatore "+giocatore.getNome()+" tira un solo dado per la regola lancio di un solo dado");
+                System.out.println("dado 1: "+passi+"\n");
                 muoviGiocatore(giocatore,passi, traguardo.getNumeroCasella(),dadoStrategy);
-                System.out.println("Il giocatore tira un solo dado per la regola lancio di un solo dado"+giocatore.getNome());
             } else {
                 passi = dadoStrategy.lancia();
                 muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(), dadoStrategy);

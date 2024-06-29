@@ -8,7 +8,7 @@ public class DadoSingoloStrategy implements DadoStrategy {
 
         int ret = random.nextInt(6) + 1;
         //stampa il valore del dado con "dado 1: "+ret
-        System.out.println("dado 1: "+ret+"\n");
+        System.out.println("dado 1: "+ret);
         return ret;
 
     }

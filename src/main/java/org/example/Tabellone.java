@@ -27,9 +27,7 @@ public class Tabellone {
         for (int i = 1; i <= righe * colonne; i++) {
             tabellone.put(new CasellaBase(i), i);
             specializzabili.put(i, true);
-            System.out.println(i);
         }
-        System.out.println(tabellone.toString());
 
         //decido di inserire una scala e un serpente in proporzione 1/8 ciascuno rispetto al numero di caselle (come nella maggior parte dei tabelloni)
         int nSerpenti = righe * colonne * 8 / 100; //uguale per le scale

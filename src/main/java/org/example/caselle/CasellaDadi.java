@@ -21,7 +21,6 @@ public class CasellaDadi extends Casella{
             passiDaFare = dadoStrategy.lancia();
             muoviGiocatore(giocatore, passiDaFare, traguardo, dadoStrategy, tabellone);
         } while (passiDaFare == 12);
-        System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella dadi");
     }
 
     private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy, Tabellone tabellone) {
@@ -32,4 +31,8 @@ public class CasellaDadi extends Casella{
     public String getTipo() {
         return tipo;
     }
+
+    @Override
+    public String toString() {return tipo;}
+
 }

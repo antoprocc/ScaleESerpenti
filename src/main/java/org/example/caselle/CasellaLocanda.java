@@ -10,18 +10,20 @@ public class CasellaLocanda extends Casella{
 
     public CasellaLocanda(int numeroCasella){
         super(numeroCasella);
-        tipo= "panchina";
+        tipo= "locanda";
     }
 
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
-        giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare()+1);
-        System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella panchina");
+        giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare()+3);
     }
 
 
     public String getTipo() {
         return tipo;
     }
+
+    @Override
+    public String toString() {return tipo;}
 
 }

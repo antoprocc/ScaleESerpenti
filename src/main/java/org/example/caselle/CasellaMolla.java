@@ -16,7 +16,7 @@ public class CasellaMolla extends Casella{
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
         muoviGiocatore(giocatore, passi, traguardo, dadoStrategy, tabellone);
-        System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella molla");
+
     }
 
     private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy, Tabellone tabellone) {
@@ -27,5 +27,8 @@ public class CasellaMolla extends Casella{
     public String getTipo() {
         return tipo;
     }
+
+    @Override
+    public String toString() {return tipo;}
 }
 

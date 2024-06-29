@@ -16,12 +16,14 @@ public class CasellaPanchina extends Casella{
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
         giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare()+1);
-        System.out.println("il giocatore "+giocatore.getNome()+" è finito su una casella panchina");
     }
 
 
     public String getTipo() {
         return tipo;
     }
+
+    @Override
+    public String toString() {return tipo;}
 
 }

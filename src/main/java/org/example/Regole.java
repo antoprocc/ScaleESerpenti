@@ -11,12 +11,12 @@ public class Regole {
     private final int casellaDadi;
     private final int casellaMolla;
     private final int casellaPesca;
-    private final int casellaDivietoDiSosta;
+    private final boolean DivietoDiSosta;
     private final boolean doppioSei;
     private final boolean unDadoAllaFine;
 
     public Regole(int righe, int colonne, int numeroDadi, int numeroGiocatori, int casellaPanchina, int casellaLocanda,
-                  int casellaDadi, int casellaMolla, int casellaPesca, int casellaDivietoDiSosta, boolean doppioSei, boolean unDadoAllaFine) {
+                  int casellaDadi, int casellaMolla, int casellaPesca, boolean DivietoDiSosta, boolean doppioSei, boolean unDadoAllaFine) {
         this.righe = righe;
         this.colonne = colonne;
         this.numeroDadi=numeroDadi;
@@ -26,7 +26,7 @@ public class Regole {
         this.casellaDadi = casellaDadi;
         this.casellaMolla= casellaMolla;
         this.casellaPesca = casellaPesca;
-        this.casellaDivietoDiSosta = casellaDivietoDiSosta;
+        this.DivietoDiSosta = DivietoDiSosta;
         this.doppioSei=doppioSei;
         this.unDadoAllaFine = unDadoAllaFine;
     }
@@ -53,7 +53,7 @@ public class Regole {
 
     public int getCasellaPesca() { return casellaPesca; }
 
-    public int getCasellaDivietoDiSosta() { return casellaDivietoDiSosta; }
+    public boolean isDivietoDiSosta() { return DivietoDiSosta; }
 
     public int getCasellaLocanda() {return casellaLocanda;}
 

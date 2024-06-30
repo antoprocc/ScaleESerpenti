@@ -136,15 +136,6 @@ public class Tabellone {
             System.out.println("la casella " + casella + " è una casella pesca");
         }
 
-        // DivietoDiSosta
-        for (int i = 0; i < regole.getCasellaDivietoDiSosta(); i++) {
-            do {
-                casella = random.nextInt(2, numeroCaselle);
-            } while (!specializzabili.get(casella));
-            sostituisciCasella(casella, new CasellaDivietoDiSosta(casella));
-            specializzabili.put(casella, false);
-            System.out.println("la casella " + casella + " è una DDS");
-        }
     }
 
     private void sostituisciCasella(int posizione, Casella nuovaCasella) {

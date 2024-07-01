@@ -1,6 +1,8 @@
 package org.example;
 
-public class Regole {
+import java.io.Serializable;
+
+public class Regole implements Serializable {
 
     private final int numeroDadi;
     private final int righe;

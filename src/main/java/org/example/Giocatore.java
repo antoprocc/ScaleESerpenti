@@ -30,8 +30,9 @@ public class Giocatore {
         // Ottieni la casella effettiva dal tabellone
         Casella nuovaCasella = tabellone.getCasella(destinazione);
         this.setCasella(nuovaCasella);
-        System.out.println("il giocatore " + getNome() + " va dalla casella " + casellaCorrente + " alla casella " + destinazione+
+        String messaggio= ("il giocatore " + getNome() + " va dalla casella " + casellaCorrente + " alla casella " + destinazione+
                 " il giocatore "+nome+" è finito su una Casella "+casella.toString());
+        Partita.appendiTestoTurni(messaggio);
     }
 
 

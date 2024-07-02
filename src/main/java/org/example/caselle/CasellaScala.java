@@ -1,6 +1,7 @@
 package org.example.caselle;
 
 import org.example.Giocatore;
+import org.example.Partita;
 import org.example.Tabellone;
 import org.example.dadi.DadoStrategy;
 
@@ -21,8 +22,11 @@ public class CasellaScala extends Casella {
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
         giocatore.getCasella().setNumeroCasella(destinazione);
+        String messaggio = "Il giocatore " + giocatore.getNome() + " è finito su una casella " + tipo + " e va alla casella " + destinazione;
+        System.out.println(messaggio);
+        Partita.appendiTestoTurni(messaggio);
     }
 
     @Override
-    public String toString() {return tipo+ " è andato sulla casella "+destinazione;}
+    public String toString() {return tipo;}
 }

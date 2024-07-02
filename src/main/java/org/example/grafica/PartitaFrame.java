@@ -25,6 +25,8 @@ public class PartitaFrame extends JFrame {
         // Aggiungere il box di testo per le informazioni sul turno
         areaTestoTurni = new JTextArea();
         areaTestoTurni.setEditable(false);
+        areaTestoTurni.setLineWrap(true);  // Abilita il wrapping delle linee
+        areaTestoTurni.setWrapStyleWord(true);  // Rende il wrapping più leggibile
         JScrollPane scrollPane = new JScrollPane(areaTestoTurni);
         scrollPane.setPreferredSize(new Dimension(300, 600));
         add(scrollPane, BorderLayout.EAST);
@@ -37,10 +39,10 @@ public class PartitaFrame extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
 
         Tabellone tabellone = new Tabellone(regole);
         partita = Partita.getInstance(tabellone, automatica, areaTestoTurni);
+        setVisible(true); // Rende la finestra visibile
         partita.avviaPartita();
     }
 

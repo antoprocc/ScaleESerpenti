@@ -24,16 +24,16 @@ public final class Partita {
     private boolean finita;
     private Giocatore vincitore;
     private final boolean automatica;
-    private JTextArea turnInfoTextArea;
+    private static JTextArea areaTestoTurni;
 
-    private Partita(Tabellone tabellone, boolean automatica, JTextArea turnInfoTextArea) {
+    private Partita(Tabellone tabellone, boolean automatica, JTextArea areaTestoTurni) {
         this.tabellone = tabellone;
         this.giocatori = new ArrayList<>();
         this.giocatoreIterator = new GiocatoreListIterator(giocatori);
         this.finita = false;
         this.vincitore = null;
         this.automatica = automatica;
-        this.turnInfoTextArea = turnInfoTextArea;
+        Partita.areaTestoTurni = areaTestoTurni;
         traguardo = new CasellaBase(tabellone.getRegole().getRighe() * tabellone.getRegole().getColonne());
 
         if (tabellone.getRegole().getNumeroDadi() == 1)
@@ -41,17 +41,14 @@ public final class Partita {
         else if (tabellone.getRegole().getNumeroDadi() == 2)
             this.dadoStrategy = new DadoDoppioStrategy();
         else
-            appendToTextArea("Numero dadi non corretto\n");
+            System.out.println("numero dadi non corretto");
+        //notifica errore nel numero dei dadi TODO
     }
 
-    public static synchronized Partita getInstance(Tabellone tabellone, boolean automatica, JTextArea turnInfoTextArea) {
+    public static synchronized Partita getInstance(Tabellone tabellone, boolean automatica, JTextArea areaTestoTurni) {
         if (istanza == null)
-            istanza = new Partita(tabellone, automatica, turnInfoTextArea);
+            istanza = new Partita(tabellone, automatica, areaTestoTurni);
         return istanza;
-    }
-
-    private void appendToTextArea(String message) {
-        SwingUtilities.invokeLater(() -> turnInfoTextArea.append(message + "\n"));
     }
 
     private void inizializzaGiocatori() {
@@ -59,22 +56,21 @@ public final class Partita {
         for (int i = 1; i <= numeroGiocatori; i++) {
             Giocatore giocatore = new Giocatore("P" + i);
             giocatori.add(giocatore);
-            appendToTextArea("Giocatore " + i + " aggiunto");
+            appendiTestoTurni("Giocatore " + i + " aggiunto");
         }
     }
 
     private void turno(Giocatore giocatore) {
-
         if (giocatore.getTurniDaSaltare() > 0) {
             if (giocatore.getDivietoDiSosta() == 0) {
                 giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() - 1);
-                appendToTextArea("\nIl giocatore " + giocatore.getNome() + " salta il turno, " + giocatore.getTurniDaSaltare()
+                appendiTestoTurni("\nIl giocatore " + giocatore.getNome() + " salta il turno, " + giocatore.getTurniDaSaltare()
                         + " turni rimasti da saltare");
                 return;
             } else {
                 giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta() - 1);
                 giocatore.setTurniDaSaltare(0);
-                appendToTextArea("\nIl giocatore " + giocatore.getNome() + " usa carta divieto di sosta e può tirare i dadi");
+                appendiTestoTurni("\nIl giocatore " + giocatore.getNome() + " usa carta divieto di sosta e può tirare i dadi");
             }
         }
 
@@ -82,11 +78,11 @@ public final class Partita {
         Random random = new Random();
 
         do {
-            appendToTextArea("\nTurno giocatore " + giocatore.getNome());
+            appendiTestoTurni("\nTurno giocatore " + giocatore.getNome());
             if (tabellone.getRegole().isUnDadoAllaFine() && giocatore.getCasella().getNumeroCasella() > traguardo.getNumeroCasella() - 6) {
                 passi = random.nextInt(6) + 1;
-                appendToTextArea("Il giocatore " + giocatore.getNome() + " tira un solo dado per la regola lancio di un solo dado");
-                appendToTextArea("dado 1: " + passi + "\n");
+                appendiTestoTurni("Il giocatore " + giocatore.getNome() + " tira un solo dado per la regola lancio di un solo dado");
+                appendiTestoTurni("dado 1: " + passi + "\n");
                 muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(), dadoStrategy);
             } else {
                 passi = dadoStrategy.lancia();
@@ -94,13 +90,15 @@ public final class Partita {
             }
         } while (passi == 12 && tabellone.getRegole().isDoppioSei());
         verificaVittoria(giocatore);
+
+        appendiTestoTurni("fine turno giocatore "+giocatore.getNome());
     }
 
     private void verificaVittoria(Giocatore giocatore) {
         if (giocatore.getCasella().equals(traguardo)) {
             this.finita = true;
             this.vincitore = giocatore;
-            appendToTextArea("Vittoria del giocatore " + vincitore.getNome());
+            appendiTestoTurni("Vittoria del giocatore " + giocatore.getNome());
         }
     }
 
@@ -109,21 +107,35 @@ public final class Partita {
         giocatore.getCasella().effetto(giocatore, dadoStrategy, traguardo, passi, tabellone);
     }
 
-    public void avanzaTurnoManuale() {
-        if (!finita) {
-            Giocatore giocatore = (Giocatore) giocatoreIterator.next();
-            turno(giocatore);
-        }
-    }
-
     public void avviaPartita() {
         inizializzaGiocatori();
         if (automatica) {
-            while (!finita) {
-                Giocatore giocatore = (Giocatore) giocatoreIterator.next();
-                turno(giocatore);
-            }
-            appendToTextArea("Vittoria del giocatore " + vincitore.getNome());
+            turnoAutomatico();
+        } else {
+            avanzaTurnoManuale();
         }
+    }
+
+    private void turnoAutomatico() {
+        Giocatore giocatore;
+        while (!finita) {
+            giocatore = (Giocatore) giocatoreIterator.next();
+            turno(giocatore);
+            try {
+                Thread.sleep(1000); // Aggiungere un piccolo timeout tra i turni per rendere la partita più verosimile
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+
+    public void avanzaTurnoManuale() {
+        Giocatore giocatore = (Giocatore) giocatoreIterator.next();
+        turno(giocatore);
+    }
+
+    public static void appendiTestoTurni(String testo) {
+        SwingUtilities.invokeLater(() -> areaTestoTurni.append(testo + "\n"));
     }
 }

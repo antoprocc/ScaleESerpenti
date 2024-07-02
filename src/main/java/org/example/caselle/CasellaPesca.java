@@ -1,6 +1,7 @@
 package org.example.caselle;
 
 import org.example.Giocatore;
+import org.example.Partita;
 import org.example.Tabellone;
 import org.example.dadi.DadoStrategy;
 
@@ -18,23 +19,27 @@ public class CasellaPesca extends Casella {
 
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
+        String messaggio;
         Random random = new Random();
         if (tabellone.getRegole().isDivietoDiSosta()){
             int carta = random.nextInt(0,5);
             switch (carta) {
                 case 0: // panchina
                     tipoPescato = "panchina";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 1);
                     break;
                 case 1: // locanda
                     tipoPescato = "locanda";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 3);
                     break;
                 case 2: // dadi
                     tipoPescato = "dadi";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     int passiDaFare;
                     do {
                         passiDaFare = dadoStrategy.lancia();
@@ -43,12 +48,14 @@ public class CasellaPesca extends Casella {
                     break;
                 case 3: // molla
                     tipoPescato = "molla";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     muoviGiocatore(giocatore, passi, traguardo, dadoStrategy, tabellone);
                     break;
                 case 4: // divieto di sosta
                     tipoPescato = "divieto di sosta";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta()+1);
                     break;
             }
@@ -58,17 +65,20 @@ public class CasellaPesca extends Casella {
             switch (carta) {
                 case 0: // panchina
                     tipoPescato = "panchina";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 1);
                     break;
                 case 1: // locanda
                     tipoPescato = "locanda";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 3);
                     break;
                 case 2: // dadi
                     tipoPescato = "dadi";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     int passiDaFare;
                     do {
                         passiDaFare = dadoStrategy.lancia();
@@ -77,7 +87,8 @@ public class CasellaPesca extends Casella {
                     break;
                 case 3: // molla
                     tipoPescato = "molla";
-                    System.out.println("... Ha pescato: carta " + tipoPescato);
+                    messaggio=("... Ha pescato: carta " + tipoPescato);
+                    Partita.appendiTestoTurni(messaggio);
                     muoviGiocatore(giocatore, passi, traguardo, dadoStrategy, tabellone);
                     break;
             }

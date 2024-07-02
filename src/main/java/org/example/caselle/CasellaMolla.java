@@ -9,7 +9,7 @@ public class CasellaMolla extends Casella{
 
     public CasellaMolla(int numeroCasella){
         super(numeroCasella);
-        tipo= "Molla";
+        tipo= "molla";
     }
 
     @Override

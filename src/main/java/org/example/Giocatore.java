@@ -31,7 +31,7 @@ public class Giocatore {
         Casella nuovaCasella = tabellone.getCasella(destinazione);
         this.setCasella(nuovaCasella);
         String messaggio= ("il giocatore " + getNome() + " va dalla casella " + casellaCorrente + " alla casella " + destinazione+
-                " il giocatore "+nome+" è finito su una Casella "+casella.toString());
+                ".\nIl giocatore "+nome+" è finito su una Casella "+casella.toString());
         Partita.appendiTestoTurni(messaggio);
     }
 

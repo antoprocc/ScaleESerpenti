@@ -5,6 +5,7 @@ import org.example.caselle.CasellaBase;
 import org.example.dadi.DadoDoppioStrategy;
 import org.example.dadi.DadoSingoloStrategy;
 import org.example.dadi.DadoStrategy;
+
 import org.example.iterator.GiocatoreIterator;
 import org.example.iterator.GiocatoreListIterator;
 
@@ -40,9 +41,6 @@ public final class Partita {
             this.dadoStrategy = new DadoSingoloStrategy();
         else if (tabellone.getRegole().getNumeroDadi() == 2)
             this.dadoStrategy = new DadoDoppioStrategy();
-        else
-            System.out.println("numero dadi non corretto");
-        //notifica errore nel numero dei dadi TODO
     }
 
     public static synchronized Partita getInstance(Tabellone tabellone, boolean automatica, JTextArea areaTestoTurni) {
@@ -82,7 +80,7 @@ public final class Partita {
             if (tabellone.getRegole().isUnDadoAllaFine() && giocatore.getCasella().getNumeroCasella() > traguardo.getNumeroCasella() - 6) {
                 passi = random.nextInt(6) + 1;
                 appendiTestoTurni("Il giocatore " + giocatore.getNome() + " tira un solo dado per la regola lancio di un solo dado");
-                appendiTestoTurni("dado 1: " + passi + "\n");
+                appendiTestoTurni("dado 1: " + passi);
                 muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(), dadoStrategy);
             } else {
                 passi = dadoStrategy.lancia();
@@ -110,27 +108,33 @@ public final class Partita {
     public void avviaPartita() {
         inizializzaGiocatori();
         if (automatica) {
-            turnoAutomatico();
+            SwingUtilities.invokeLater(this::turnoAutomatico);
         } else {
             avanzaTurnoManuale();
         }
     }
 
+
     private void turnoAutomatico() {
-        Giocatore giocatore;
-        while (!finita) {
-            giocatore = (Giocatore) giocatoreIterator.next();
-            turno(giocatore);
-            try {
-                Thread.sleep(1000); // Aggiungere un piccolo timeout tra i turni per rendere la partita più verosimile
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+        new Thread(() -> {
+            Giocatore giocatore;
+            while (!finita) {
+                giocatore = (Giocatore) giocatoreIterator.next();
+                turno(giocatore);
+                try {
+                    Thread.sleep(1000); // Aggiungere un piccolo timeout tra i turni per rendere la partita più verosimile
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
-        }
+        }).start();
     }
 
 
     public void avanzaTurnoManuale() {
+        if(finita){
+            return;
+        }
         Giocatore giocatore = (Giocatore) giocatoreIterator.next();
         turno(giocatore);
     }

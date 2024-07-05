@@ -32,7 +32,7 @@ public class PartitaFrame extends JFrame {
         add(scrollPane, BorderLayout.EAST);
 
         bottoneLanciaDadi = new JButton("Lancia Dadi");
-        bottoneLanciaDadi.addActionListener(e -> partita.avanzaTurnoManuale());
+        bottoneLanciaDadi.addActionListener(_ -> partita.avanzaTurnoManuale());
         bottoneLanciaDadi.setVisible(!automatica); // Mostra il bottone solo se la modalità è manuale
         add(bottoneLanciaDadi, BorderLayout.SOUTH);
 
@@ -45,6 +45,8 @@ public class PartitaFrame extends JFrame {
         setVisible(true); // Rende la finestra visibile
         partita.avviaPartita();
     }
+
+
 
     private void creaTabellone() {
         int righe = regole.getRighe();
@@ -69,7 +71,4 @@ public class PartitaFrame extends JFrame {
         cella.add(etichetta);
     }
 
-    public void aggiornaInfoTurno(String info) {
-        areaTestoTurni.append(info + "\n");
-    }
 }

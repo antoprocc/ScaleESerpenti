@@ -62,7 +62,7 @@ public class Tabellone {
         for (int i = 0; i < nSerpenti; i++) {
             int base, cima;
             do {
-                base = random.nextInt(1, numeroCaselle - 1);
+                base = random.nextInt(2, numeroCaselle - 1);
                 cima = random.nextInt(base + 1, numeroCaselle);
             } while (!specializzabili.get(base) || !specializzabili.get(cima) ||
                     calcolaRiga(base, colonne) == calcolaRiga(cima, colonne));

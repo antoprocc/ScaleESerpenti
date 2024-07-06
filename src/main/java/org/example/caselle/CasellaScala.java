@@ -21,9 +21,9 @@ public class CasellaScala extends Casella {
 
     @Override
     public void effetto(Giocatore giocatore, DadoStrategy dadoStrategy, int traguardo, int passi, Tabellone tabellone) {
-        giocatore.getCasella().setNumeroCasella(destinazione);
+        Casella nuovaCasella = tabellone.getCasella(destinazione);
+        giocatore.setCasella(nuovaCasella);
         String messaggio = "Il giocatore " + giocatore.getNome() + " è finito su una casella " + tipo + " e va alla casella " + destinazione;
-        System.out.println(messaggio);
         Partita.appendiTestoTurni(messaggio);
     }
 

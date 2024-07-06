@@ -1,19 +1,22 @@
 package org.example.grafica;
 
+import org.example.Giocatore;
 import org.example.Partita;
 import org.example.Regole;
 import org.example.Tabellone;
+import org.example.observer.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PartitaFrame extends JFrame {
-
+public class PartitaFrame extends JFrame implements Observer {
     private final Regole regole; // Regole del gioco
     private final Partita partita; // Partita corrente
+    private final JPanel pannelloTabellone; // Pannello per il tabellone di gioco
     public static final Map<Integer, String> caselleSpeciali = new HashMap<>();
+    private final Map<String, JLabel> pedineGiocatori;
 
     public PartitaFrame(Regole regole, boolean automatica) {
         this.regole = regole;
@@ -34,7 +37,11 @@ public class PartitaFrame extends JFrame {
         Tabellone tabellone = new Tabellone(regole);
         partita = Partita.getInstance(tabellone, automatica, areaTestoTurni);
 
+        pannelloTabellone = new JPanel(new GridLayout(regole.getRighe(), regole.getColonne()));
+        pedineGiocatori = new HashMap<>();
+
         creaTabellone();
+        inizializzaPedineGiocatori();
 
         // Bottone per lanciare i dadi (solo per modalità manuale)
         JButton bottoneLanciaDadi = new JButton("Lancia Dadi");
@@ -48,17 +55,16 @@ public class PartitaFrame extends JFrame {
 
         setVisible(true); // Rende la finestra visibile
         partita.avviaPartita();
+        partita.aggiungiOsservatoreAGiocatori(this);
     }
 
     private void creaTabellone() {
         int righe = regole.getRighe();
         int colonne = regole.getColonne();
-        // Pannello per il tabellone di gioco
-        JPanel pannelloTabellone = new JPanel(new GridLayout(righe, colonne));
         for (int i = 1; i <= righe * colonne; i++) {
             JPanel cella = new JPanel();
             cella.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            cella.setLayout(new BoxLayout(cella, BoxLayout.Y_AXIS)); // Usa BoxLayout per disporre gli elementi verticalmente
+            cella.setLayout(new BoxLayout(cella, BoxLayout.Y_AXIS));
 
             // Personalizzare la cella in base al tipo di casella
             personalizzaCella(cella, i);
@@ -114,4 +120,43 @@ public class PartitaFrame extends JFrame {
         cella.add(etichettaNumero);
         cella.add(etichettaTipo);
     }
+
+    private void inizializzaPedineGiocatori() {
+        for (Giocatore giocatore : partita.getGiocatori()) {
+            JLabel pedina = new JLabel(giocatore.getNome());
+            pedineGiocatori.put(giocatore.getNome(), pedina);
+
+            // Posizioniamo la pedina nella cella iniziale
+            JPanel cellaIniziale = (JPanel) pannelloTabellone.getComponent(0);
+            cellaIniziale.add(pedina);
+        }
+    }
+
+    @Override
+    public void update(int posizione, String nomeGiocatore) {
+        SwingUtilities.invokeLater(() -> {
+            JLabel pedina = pedineGiocatori.get(nomeGiocatore);
+            if (pedina == null) {
+                pedina = new JLabel(nomeGiocatore);
+                pedineGiocatori.put(nomeGiocatore, pedina);
+            }
+
+            // Rimuovi la pedina da tutte le celle
+            for (Component componente : pannelloTabellone.getComponents()) {
+                if (componente instanceof JPanel) {
+                    JPanel cella = (JPanel) componente;
+                    cella.remove(pedina);
+                    cella.revalidate();
+                    cella.repaint();
+                }
+            }
+
+            // Aggiungi la pedina alla nuova cella
+            JPanel nuovaCella = (JPanel) pannelloTabellone.getComponent(posizione - 1);
+            nuovaCella.add(pedina);
+            nuovaCella.revalidate();
+            nuovaCella.repaint();
+        });
+    }
+
 }

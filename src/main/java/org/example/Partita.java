@@ -8,6 +8,7 @@ import org.example.dadi.DadoStrategy;
 
 import org.example.iterator.GiocatoreIterator;
 import org.example.iterator.GiocatoreListIterator;
+import org.example.observer.Observer;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -141,5 +142,16 @@ public final class Partita {
 
     public static void appendiTestoTurni(String testo) {
         SwingUtilities.invokeLater(() -> areaTestoTurni.append(testo + "\n"));
+    }
+
+    //registro observer
+    public void aggiungiOsservatoreAGiocatori(Observer observer) {
+        for (Giocatore giocatore : giocatori) {
+            giocatore.addObserver(observer);
+        }
+    }
+
+    public List<Giocatore> getGiocatori() {
+        return giocatori;
     }
 }

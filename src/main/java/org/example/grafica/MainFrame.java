@@ -44,9 +44,9 @@ public class MainFrame extends JFrame {
         bottoneCarica.setPreferredSize(dimensioneBottone);
 
         // Aggiungo ActionListener ai bottoni per aprire altre schermate al click
-        bottoneCrea.addActionListener(_ -> apriDialogCreaPartita());
+        bottoneCrea.addActionListener(e -> apriDialogCreaPartita());
 
-        bottoneCarica.addActionListener(_ -> caricaPartita());
+        bottoneCarica.addActionListener(e -> caricaPartita());
 
         // Aggiungo pulsanti al pannello principale
         pannelloPrincipale.add(bottoneCrea, gbc);
@@ -129,7 +129,7 @@ public class MainFrame extends JFrame {
         dialog.add(pannelloInput, BorderLayout.CENTER);
 
         JButton bottoneRegoleExtra = new JButton("Regole Extra");
-        bottoneRegoleExtra.addActionListener(_ -> apriDialogRegoleExtra());
+        bottoneRegoleExtra.addActionListener(e -> apriDialogRegoleExtra());
         dialog.add(bottoneRegoleExtra, BorderLayout.SOUTH);
 
         dialog.setSize(400, 300);
@@ -159,7 +159,7 @@ public class MainFrame extends JFrame {
         dialogRegoleExtra.add(checkLancioUnSoloDado);
 
         JButton bottoneSalva = new JButton("Salva");
-        bottoneSalva.addActionListener(_ -> {
+        bottoneSalva.addActionListener(e -> {
             Regole regole = salvaRegoleExtra();
             salvaRegoleSuFile(regole);
             dialogRegoleExtra.dispose(); //chiudere il dialog e liberare le risorse
@@ -229,13 +229,13 @@ public class MainFrame extends JFrame {
         JPanel pannello = new JPanel(new GridLayout(2, 1, 10, 10));
 
         JButton bottoneAutomatica = new JButton("Automatica");
-        bottoneAutomatica.addActionListener(_ -> {
+        bottoneAutomatica.addActionListener(e -> {
             dialog.dispose();
             SwingUtilities.invokeLater(() -> new PartitaFrame(regole, true));
         });
 
         JButton bottoneManuale = new JButton("Manuale");
-        bottoneManuale.addActionListener(_ -> {
+        bottoneManuale.addActionListener(e -> {
             dialog.dispose();
             SwingUtilities.invokeLater(() -> new PartitaFrame(regole, false));
         });

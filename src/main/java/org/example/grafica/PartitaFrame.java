@@ -45,7 +45,7 @@ public class PartitaFrame extends JFrame implements Observer {
 
         // Bottone per lanciare i dadi (solo per modalità manuale)
         JButton bottoneLanciaDadi = new JButton("Lancia Dadi");
-        bottoneLanciaDadi.addActionListener(_ -> partita.avanzaTurnoManuale());
+        bottoneLanciaDadi.addActionListener(e -> partita.avanzaTurnoManuale());
         bottoneLanciaDadi.setVisible(!automatica); // Mostra il bottone solo se la modalità è manuale
         add(bottoneLanciaDadi, BorderLayout.SOUTH);
 

@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="fix warning">
+    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="implementazione pattern observer per movimento pedine">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Giocatore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Partita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Partita.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/Casella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/Casella.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaDadi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaDadi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaDivietoDiSosta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaDivietoDiSosta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaLocanda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaLocanda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaMolla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaMolla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaPanchina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaPanchina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaPesca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaPesca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaScala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaScala.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaSerpente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/CasellaSerpente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/grafica/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/grafica/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/grafica/PartitaFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/grafica/PartitaFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -60,27 +52,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.MainFrame.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.general",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -104,6 +97,9 @@
       <workItem from="1719310124629" duration="11300000" />
       <workItem from="1719412635074" duration="44497000" />
       <workItem from="1719653751993" duration="8097000" />
+      <workItem from="1719752946114" duration="36170000" />
+      <workItem from="1720170754545" duration="5403000" />
+      <workItem from="1720253627308" duration="18789000" />
     </task>
     <task id="LOCAL-00001" summary="Prima commit.">
       <option name="closed" value="true" />
@@ -281,16 +277,109 @@
       <option name="project" value="LOCAL" />
       <updated>1719661835451</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="correzione errore divieto di sosta">
+      <option name="closed" value="true" />
+      <created>1719762456196</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1719762456196</updated>
+    </task>
+    <task id="LOCAL-00024" summary="prima implementazione grafica">
+      <option name="closed" value="true" />
+      <created>1719872476302</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1719872476303</updated>
+    </task>
+    <task id="LOCAL-00025" summary="adeguo alla grafica">
+      <option name="closed" value="true" />
+      <created>1719872505723</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1719872505723</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fix tipo">
+      <option name="closed" value="true" />
+      <created>1719919388337</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1719919388337</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix area testo turni">
+      <option name="closed" value="true" />
+      <created>1719929814874</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1719929814874</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fix stampa">
+      <option name="closed" value="true" />
+      <created>1720189225458</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1720189225458</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fix visualizzazione tabellonee area testo">
+      <option name="closed" value="true" />
+      <created>1720189255865</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1720189255865</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix tipo">
+      <option name="closed" value="true" />
+      <created>1720257589010</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1720257589010</updated>
+    </task>
+    <task id="LOCAL-00031" summary="update grafica tabellone">
+      <option name="closed" value="true" />
+      <created>1720269093268</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1720269093268</updated>
+    </task>
+    <task id="LOCAL-00032" summary="fix scelta scala (escluso 1)">
+      <option name="closed" value="true" />
+      <created>1720281671407</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1720281671408</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fix cambio casella">
+      <option name="closed" value="true" />
+      <created>1720281739242</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1720281739242</updated>
+    </task>
+    <task id="LOCAL-00034" summary="implementazione pattern observer per movimento pedine">
+      <option name="closed" value="true" />
+      <created>1720282139213</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1720282139213</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Prima commit." />
-    <MESSAGE value="Prima bozza di alcune classi" />
-    <MESSAGE value="modifiche al codice, bozza" />
     <MESSAGE value="implementazione strategy dado" />
     <MESSAGE value="implementazione effetti caselle" />
     <MESSAGE value="aggiunta di iterator, metodo di gioco della partita e &quot;lancio di un solo dado&quot;" />
@@ -305,6 +394,17 @@
     <MESSAGE value="fix stampe" />
     <MESSAGE value="aggiunta turno manuale" />
     <MESSAGE value="fix warning" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix warning" />
+    <MESSAGE value="correzione errore divieto di sosta" />
+    <MESSAGE value="prima implementazione grafica" />
+    <MESSAGE value="adeguo alla grafica" />
+    <MESSAGE value="fix area testo turni" />
+    <MESSAGE value="fix stampa" />
+    <MESSAGE value="fix visualizzazione tabellonee area testo" />
+    <MESSAGE value="fix tipo" />
+    <MESSAGE value="update grafica tabellone" />
+    <MESSAGE value="fix scelta scala (escluso 1)" />
+    <MESSAGE value="fix cambio casella" />
+    <MESSAGE value="implementazione pattern observer per movimento pedine" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementazione pattern observer per movimento pedine" />
   </component>
 </project>

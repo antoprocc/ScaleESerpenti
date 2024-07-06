@@ -23,7 +23,6 @@ public final class Partita {
     private final Casella traguardo;
     private DadoStrategy dadoStrategy;
     private boolean finita;
-    private Giocatore vincitore;
     private final boolean automatica;
     private static JTextArea areaTestoTurni;
 
@@ -32,7 +31,6 @@ public final class Partita {
         this.giocatori = new ArrayList<>();
         this.giocatoreIterator = new GiocatoreListIterator(giocatori);
         this.finita = false;
-        this.vincitore = null;
         this.automatica = automatica;
         Partita.areaTestoTurni = areaTestoTurni;
         traguardo = new CasellaBase(tabellone.getRegole().getRighe() * tabellone.getRegole().getColonne());
@@ -87,17 +85,19 @@ public final class Partita {
                 muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(), dadoStrategy);
             }
         } while (passi == 12 && tabellone.getRegole().isDoppioSei());
-        verificaVittoria(giocatore);
-
-        appendiTestoTurni("fine turno giocatore "+giocatore.getNome());
+        if(verificaVittoria(giocatore))
+            appendiTestoTurni("fine partita");
+        else
+            appendiTestoTurni("fine turno giocatore "+giocatore.getNome());
     }
 
-    private void verificaVittoria(Giocatore giocatore) {
+    private boolean verificaVittoria(Giocatore giocatore) {
         if (giocatore.getCasella().equals(traguardo)) {
             this.finita = true;
-            this.vincitore = giocatore;
-            appendiTestoTurni("Vittoria del giocatore " + giocatore.getNome());
+            appendiTestoTurni("VINCE IL GIOCATORE " + giocatore.getNome());
+            return true;
         }
+        return false;
     }
 
     private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy) {
@@ -122,7 +122,7 @@ public final class Partita {
                 giocatore = (Giocatore) giocatoreIterator.next();
                 turno(giocatore);
                 try {
-                    Thread.sleep(1000); // Aggiungere un piccolo timeout tra i turni per rendere la partita più verosimile
+                    Thread.sleep(2000); // Aggiungere un piccolo timeout tra i turni per rendere la partita più verosimile
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }

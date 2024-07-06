@@ -6,24 +6,23 @@ import org.example.Tabellone;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PartitaFrame extends JFrame {
 
-    private JPanel pannelloTabellone; // Pannello per il tabellone di gioco
-    private JTextArea areaTestoTurni; // Area di testo per mostrare le informazioni sui turni
-    private JButton bottoneLanciaDadi; // Bottone per lanciare i dadi (solo per modalità manuale)
-    private Regole regole; // Regole del gioco
-    private Partita partita; // Partita corrente
+    private final Regole regole; // Regole del gioco
+    private final Partita partita; // Partita corrente
+    public static final Map<Integer, String> caselleSpeciali = new HashMap<>();
 
     public PartitaFrame(Regole regole, boolean automatica) {
         this.regole = regole;
         setTitle("Scale e Serpenti - Partita in corso");
         setLayout(new BorderLayout());
 
-        creaTabellone();
-
-        // Aggiungere il box di testo per le informazioni sul turno
-        areaTestoTurni = new JTextArea();
+        // Inizializza il box di testo per le informazioni sul turno
+        // Area di testo per mostrare le informazioni sui turni
+        JTextArea areaTestoTurni = new JTextArea();
         areaTestoTurni.setEditable(false);
         areaTestoTurni.setLineWrap(true);  // Abilita il wrapping delle linee
         areaTestoTurni.setWrapStyleWord(true);  // Rende il wrapping più leggibile
@@ -31,7 +30,14 @@ public class PartitaFrame extends JFrame {
         scrollPane.setPreferredSize(new Dimension(300, 600));
         add(scrollPane, BorderLayout.EAST);
 
-        bottoneLanciaDadi = new JButton("Lancia Dadi");
+        // Inizializza il tabellone e la partita
+        Tabellone tabellone = new Tabellone(regole);
+        partita = Partita.getInstance(tabellone, automatica, areaTestoTurni);
+
+        creaTabellone();
+
+        // Bottone per lanciare i dadi (solo per modalità manuale)
+        JButton bottoneLanciaDadi = new JButton("Lancia Dadi");
         bottoneLanciaDadi.addActionListener(_ -> partita.avanzaTurnoManuale());
         bottoneLanciaDadi.setVisible(!automatica); // Mostra il bottone solo se la modalità è manuale
         add(bottoneLanciaDadi, BorderLayout.SOUTH);
@@ -40,21 +46,19 @@ public class PartitaFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        Tabellone tabellone = new Tabellone(regole);
-        partita = Partita.getInstance(tabellone, automatica, areaTestoTurni);
         setVisible(true); // Rende la finestra visibile
         partita.avviaPartita();
     }
 
-
-
     private void creaTabellone() {
         int righe = regole.getRighe();
         int colonne = regole.getColonne();
-        pannelloTabellone = new JPanel(new GridLayout(righe, colonne));
-        for (int i = 0; i < righe * colonne; i++) {
+        // Pannello per il tabellone di gioco
+        JPanel pannelloTabellone = new JPanel(new GridLayout(righe, colonne));
+        for (int i = 1; i <= righe * colonne; i++) {
             JPanel cella = new JPanel();
             cella.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            cella.setLayout(new BoxLayout(cella, BoxLayout.Y_AXIS)); // Usa BoxLayout per disporre gli elementi verticalmente
 
             // Personalizzare la cella in base al tipo di casella
             personalizzaCella(cella, i);
@@ -65,10 +69,49 @@ public class PartitaFrame extends JFrame {
     }
 
     private void personalizzaCella(JPanel cella, int indice) {
-        //TODO
-        cella.setBackground(Color.WHITE);
-        JLabel etichetta = new JLabel(String.valueOf(indice + 1));
-        cella.add(etichetta);
-    }
 
+        JLabel etichettaNumero = new JLabel(String.valueOf(indice));
+        JLabel etichettaTipo = new JLabel();
+
+        if(caselleSpeciali.containsKey(indice)) { //è una casella speciale
+            String tipo = caselleSpeciali.get(indice);
+            switch (tipo){
+                case "scala":
+                    cella.setBackground(Color.green);
+                    etichettaTipo.setText("scala");
+                    break;
+                case "serpente":
+                    cella.setBackground(Color.red);
+                    etichettaTipo.setText("serpente");
+                    break;
+                case "pesca":
+                    cella.setBackground(Color.yellow);
+                    etichettaTipo.setText("pesca");
+                    break;
+                case "panchina":
+                    cella.setBackground(Color.magenta);
+                    etichettaTipo.setText("panchina");
+                    break;
+                case "locanda":
+                    cella.setBackground(Color.orange);
+                    etichettaTipo.setText("locanda");
+                    break;
+                case "molla":
+                    cella.setBackground(Color.blue);
+                    etichettaTipo.setText("molla");
+                    break;
+                case "dadi":
+                    cella.setBackground(Color.cyan);
+                    etichettaTipo.setText("dadi");
+                    break;
+            }
+        }
+        else { //casella base
+            cella.setBackground(Color.white);
+            etichettaTipo.setText("Base");
+        }
+
+        cella.add(etichettaNumero);
+        cella.add(etichettaTipo);
+    }
 }

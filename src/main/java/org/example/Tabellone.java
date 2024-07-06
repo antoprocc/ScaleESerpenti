@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static org.example.grafica.PartitaFrame.caselleSpeciali;
+
 public class Tabellone {
 
     private final Map<Casella, Integer> tabellone;
@@ -16,7 +18,6 @@ public class Tabellone {
         this.specializzabili = new HashMap<>();
         this.tabellone = new HashMap<>();
         this.regole = regole;
-
         inizializzaTabellone();
     }
 
@@ -54,7 +55,7 @@ public class Tabellone {
             sostituisciCasella(bocca, new CasellaSerpente(bocca, coda));
             specializzabili.put(bocca, false);
             specializzabili.put(coda, false);
-            System.out.println("la casella " + bocca + " è un serpente");
+            caselleSpeciali.put(bocca, "serpente");
         }
 
         // SCALE
@@ -69,15 +70,13 @@ public class Tabellone {
             sostituisciCasella(base, new CasellaScala(base, cima));
             specializzabili.put(base, false);
             specializzabili.put(cima, false);
-            System.out.println("la casella " + base + " è una scala");
+            caselleSpeciali.put(base, "scala");
         }
     }
 
     private int calcolaRiga(int posizione, int colonne) {
         return (posizione - 1) / colonne;
     }
-
-
 
     private void aggiungiCaselleSpeciali(Regole regole) {
         Random random = new Random();
@@ -93,7 +92,7 @@ public class Tabellone {
             } while (!specializzabili.get(casella));
             sostituisciCasella(casella, new CasellaPanchina(casella));
             specializzabili.put(casella, false);
-            System.out.println("la casella " + casella + " è una panchina");
+            caselleSpeciali.put(casella, "panchina");
         }
 
         // locanda
@@ -103,7 +102,7 @@ public class Tabellone {
             } while (!specializzabili.get(casella));
             sostituisciCasella(casella, new CasellaLocanda(casella));
             specializzabili.put(casella, false);
-            System.out.println("la casella " + casella + " è una locanda");
+            caselleSpeciali.put(casella, "locanda");
         }
 
         // dadi
@@ -113,7 +112,7 @@ public class Tabellone {
             } while (!specializzabili.get(casella));
             sostituisciCasella(casella, new CasellaDadi(casella));
             specializzabili.put(casella, false);
-            System.out.println("la casella " + casella + " è una casella dadi");
+            caselleSpeciali.put(casella, "dadi");
         }
 
         // molla
@@ -123,7 +122,7 @@ public class Tabellone {
             } while (!specializzabili.get(casella));
             sostituisciCasella(casella, new CasellaMolla(casella));
             specializzabili.put(casella, false);
-            System.out.println("la casella " + casella + " è una molla");
+            caselleSpeciali.put(casella, "molla");
         }
 
         // pesca
@@ -133,9 +132,8 @@ public class Tabellone {
             } while (!specializzabili.get(casella));
             sostituisciCasella(casella, new CasellaPesca(casella));
             specializzabili.put(casella, false);
-            System.out.println("la casella " + casella + " è una casella pesca");
+            caselleSpeciali.put(casella, "pesca");
         }
-
     }
 
     private void sostituisciCasella(int posizione, Casella nuovaCasella) {

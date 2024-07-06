@@ -4,8 +4,6 @@ import org.example.Regole;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 
 public class MainFrame extends JFrame {
@@ -30,7 +28,7 @@ public class MainFrame extends JFrame {
 
         // Creo un pannello principale con GridBagLayout
         JPanel pannelloPrincipale = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        GridBagConstraints gbc = new GridBagConstraints(); //per disporre i componenti nel container
         gbc.insets = new Insets(10, 10, 10, 10); // Margini tra i bottoni
         gbc.gridx = 0;
         gbc.gridy = GridBagConstraints.RELATIVE;
@@ -46,19 +44,9 @@ public class MainFrame extends JFrame {
         bottoneCarica.setPreferredSize(dimensioneBottone);
 
         // Aggiungo ActionListener ai bottoni per aprire altre schermate al click
-        bottoneCrea.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                apriDialogCreaPartita();
-            }
-        });
+        bottoneCrea.addActionListener(_ -> apriDialogCreaPartita());
 
-        bottoneCarica.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                caricaPartita();
-            }
-        });
+        bottoneCarica.addActionListener(_ -> caricaPartita());
 
         // Aggiungo pulsanti al pannello principale
         pannelloPrincipale.add(bottoneCrea, gbc);
@@ -69,7 +57,7 @@ public class MainFrame extends JFrame {
 
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); //centrare rispetto allo schermo
         setVisible(true);
     }
 
@@ -94,62 +82,54 @@ public class MainFrame extends JFrame {
                     opzioni = new Integer[]{6, 7, 8, 9, 10};
                     comboRighe = new JComboBox<>(opzioni);
                     pannelloInput.add(comboRighe);
-                    continue;
+                    break;
                 case "Numero colonne":
                     opzioni = new Integer[]{6, 7, 8, 9, 10};
                     comboColonne = new JComboBox<>(opzioni);
                     pannelloInput.add(comboColonne);
-                    continue;
+                    break;
                 case "Numero giocatori":
                     opzioni = new Integer[]{2, 3, 4, 5, 6};
                     comboNumeroGiocatori = new JComboBox<>(opzioni);
                     pannelloInput.add(comboNumeroGiocatori);
-                    continue;
+                    break;
                 case "Numero dadi":
                     opzioni = new Integer[]{1, 2};
                     comboNumeroDadi = new JComboBox<>(opzioni);
                     pannelloInput.add(comboNumeroDadi);
-                    continue;
+                    break;
                 case "Caselle panchina":
                     opzioni = new Integer[]{0, 1, 2, 3, 4};
                     comboCasellaPanchina = new JComboBox<>(opzioni);
                     pannelloInput.add(comboCasellaPanchina);
-                    continue;
+                    break;
                 case "Caselle locanda":
                     opzioni = new Integer[]{0, 1, 2, 3, 4};
                     comboCasellaLocanda = new JComboBox<>(opzioni);
                     pannelloInput.add(comboCasellaLocanda);
-                    continue;
+                    break;
                 case "Caselle molla":
                     opzioni = new Integer[]{0, 1, 2, 3, 4};
                     comboCasellaMolla = new JComboBox<>(opzioni);
                     pannelloInput.add(comboCasellaMolla);
-                    continue;
+                    break;
                 case "Caselle dadi":
                     opzioni = new Integer[]{0, 1, 2, 3, 4};
                     comboCasellaDadi = new JComboBox<>(opzioni);
                     pannelloInput.add(comboCasellaDadi);
-                    continue;
+                    break;
                 case "Caselle pesca una carta":
                     opzioni = new Integer[]{0, 1, 2, 3, 4};
                     comboCasellePescaCarta = new JComboBox<>(opzioni);
                     pannelloInput.add(comboCasellePescaCarta);
-                    continue;
-                default:
-                    opzioni = new Integer[]{0}; // Default case, should not occur
-                    break;
+
             }
         }
 
         dialog.add(pannelloInput, BorderLayout.CENTER);
 
         JButton bottoneRegoleExtra = new JButton("Regole Extra");
-        bottoneRegoleExtra.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                apriDialogRegoleExtra();
-            }
-        });
+        bottoneRegoleExtra.addActionListener(_ -> apriDialogRegoleExtra());
         dialog.add(bottoneRegoleExtra, BorderLayout.SOUTH);
 
         dialog.setSize(400, 300);
@@ -179,13 +159,10 @@ public class MainFrame extends JFrame {
         dialogRegoleExtra.add(checkLancioUnSoloDado);
 
         JButton bottoneSalva = new JButton("Salva");
-        bottoneSalva.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Regole regole = salvaRegoleExtra();
-                salvaRegoleSuFile(regole);
-                dialogRegoleExtra.dispose();
-            }
+        bottoneSalva.addActionListener(_ -> {
+            Regole regole = salvaRegoleExtra();
+            salvaRegoleSuFile(regole);
+            dialogRegoleExtra.dispose(); //chiudere il dialog e liberare le risorse
         });
         dialogRegoleExtra.add(bottoneSalva);
 
@@ -213,7 +190,7 @@ public class MainFrame extends JFrame {
     }
 
     private void salvaRegoleSuFile(Regole regole) {
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();//finestra di dialogo per selezionare file o dir
         int userSelection = fileChooser.showSaveDialog(this);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -252,13 +229,13 @@ public class MainFrame extends JFrame {
         JPanel pannello = new JPanel(new GridLayout(2, 1, 10, 10));
 
         JButton bottoneAutomatica = new JButton("Automatica");
-        bottoneAutomatica.addActionListener(e -> {
+        bottoneAutomatica.addActionListener(_ -> {
             dialog.dispose();
             SwingUtilities.invokeLater(() -> new PartitaFrame(regole, true));
         });
 
         JButton bottoneManuale = new JButton("Manuale");
-        bottoneManuale.addActionListener(e -> {
+        bottoneManuale.addActionListener(_ -> {
             dialog.dispose();
             SwingUtilities.invokeLater(() -> new PartitaFrame(regole, false));
         });
@@ -272,7 +249,4 @@ public class MainFrame extends JFrame {
         dialog.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MainFrame());
-    }
 }

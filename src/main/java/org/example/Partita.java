@@ -111,7 +111,7 @@ public final class Partita {
         if (automatica) {
             SwingUtilities.invokeLater(this::turnoAutomatico);
         } else {
-            avanzaTurnoManuale();
+            appendiTestoTurni("La partita è pronta. Premi 'Lancia Dadi' per iniziare.");
         }
     }
 

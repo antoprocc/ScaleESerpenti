@@ -231,13 +231,13 @@ public class MainFrame extends JFrame {
         JButton bottoneAutomatica = new JButton("Automatica");
         bottoneAutomatica.addActionListener(e -> {
             dialog.dispose();
-            SwingUtilities.invokeLater(() -> new PartitaFrame(regole, true));
+            SwingUtilities.invokeLater(() -> new PartitaFrame(regole, true,this));
         });
 
         JButton bottoneManuale = new JButton("Manuale");
         bottoneManuale.addActionListener(e -> {
             dialog.dispose();
-            SwingUtilities.invokeLater(() -> new PartitaFrame(regole, false));
+            SwingUtilities.invokeLater(() -> new PartitaFrame(regole, false,this));
         });
 
         pannello.add(bottoneAutomatica);

@@ -18,10 +18,15 @@ public class PartitaFrame extends JFrame implements Observer {
     public static final Map<Integer, String> caselleSpeciali = new HashMap<>();
     private final Map<String, JLabel> pedineGiocatori;
 
-    public PartitaFrame(Regole regole, boolean automatica) {
+    public PartitaFrame(Regole regole, boolean automatica, MainFrame mainFrame) {
         this.regole = regole;
         setTitle("Scale e Serpenti - Partita in corso");
         setLayout(new BorderLayout());
+
+        // Chiude il mainFrame quando PartitaFrame viene creato
+        if (mainFrame != null) {
+            mainFrame.dispose();
+        }
 
         // Inizializza il box di testo per le informazioni sul turno
         // Area di testo per mostrare le informazioni sui turni
@@ -29,15 +34,16 @@ public class PartitaFrame extends JFrame implements Observer {
         areaTestoTurni.setEditable(false);
         areaTestoTurni.setLineWrap(true);  // Abilita il wrapping delle linee
         areaTestoTurni.setWrapStyleWord(true);  // Rende il wrapping più leggibile
-        JScrollPane scrollPane = new JScrollPane(areaTestoTurni);
-        scrollPane.setPreferredSize(new Dimension(300, 600));
-        add(scrollPane, BorderLayout.EAST);
+        JScrollPane scrollPaneTurni = new JScrollPane(areaTestoTurni);
+        scrollPaneTurni.setPreferredSize(new Dimension(300, 600));
+        add(scrollPaneTurni, BorderLayout.EAST);
 
         // Inizializza il tabellone e la partita
         Tabellone tabellone = new Tabellone(regole);
         partita = Partita.getInstance(tabellone, automatica, areaTestoTurni);
 
         pannelloTabellone = new JPanel(new GridLayout(regole.getRighe(), regole.getColonne()));
+        JScrollPane scrollPaneTabellone = new JScrollPane(pannelloTabellone);
         pedineGiocatori = new HashMap<>();
 
         creaTabellone();
@@ -49,7 +55,10 @@ public class PartitaFrame extends JFrame implements Observer {
         bottoneLanciaDadi.setVisible(!automatica); // Mostra il bottone solo se la modalità è manuale
         add(bottoneLanciaDadi, BorderLayout.SOUTH);
 
-        setSize(800, 600);
+        add(scrollPaneTabellone, BorderLayout.CENTER);
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setMinimumSize(new Dimension(800, 600)); // Imposta la dimensione minima della finestra
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -71,7 +80,6 @@ public class PartitaFrame extends JFrame implements Observer {
 
             pannelloTabellone.add(cella);
         }
-        add(pannelloTabellone, BorderLayout.CENTER);
     }
 
     private void personalizzaCella(JPanel cella, int indice) {

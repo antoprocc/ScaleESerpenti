@@ -15,37 +15,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public final class Partita {
+public enum Partita {
+    ISTANZA;
 
-    private static Partita istanza = null;
-    private final Tabellone tabellone;
-    private final List<Giocatore> giocatori;
-    private final GiocatoreIterator giocatoreIterator;
-    private final Casella traguardo;
+    private Tabellone tabellone;
+    private List<Giocatore> giocatori;
+    private GiocatoreIterator giocatoreIterator;
+    private Casella traguardo;
     private DadoStrategy dadoStrategy;
     private boolean finita;
-    private final boolean automatica;
+    private boolean automatica;
     private static JTextArea areaTestoTurni;
 
-    private Partita(Tabellone tabellone, boolean automatica, JTextArea areaTestoTurni) {
-        this.tabellone = tabellone;
-        this.giocatori = new ArrayList<>();
-        this.giocatoreIterator = new GiocatoreListIterator(giocatori);
-        this.finita = false;
-        this.automatica = automatica;
-        Partita.areaTestoTurni = areaTestoTurni;
-        traguardo = new CasellaBase(tabellone.getRegole().getRighe() * tabellone.getRegole().getColonne());
-
-        if (tabellone.getRegole().getNumeroDadi() == 1)
-            this.dadoStrategy = new DadoSingoloStrategy();
-        else if (tabellone.getRegole().getNumeroDadi() == 2)
-            this.dadoStrategy = new DadoDoppioStrategy();
-    }
-
-    public static synchronized Partita getInstance(Tabellone tabellone, boolean automatica, JTextArea areaTestoTurni) {
-        if (istanza == null)
-            istanza = new Partita(tabellone, automatica, areaTestoTurni);
-        return istanza;
+    // Metodo per inizializzare i campi della partita
+    public void init(Tabellone tabellone, boolean automatica, JTextArea areaTestoTurni) {
+        if (this.tabellone == null) {  // Assicura che l'inizializzazione avvenga una sola volta
+            this.tabellone = tabellone;
+            this.giocatori = new ArrayList<>();
+            this.giocatoreIterator = new GiocatoreListIterator(giocatori);
+            this.finita = false;
+            this.automatica = automatica;
+            Partita.areaTestoTurni = areaTestoTurni;
+            traguardo = new CasellaBase(tabellone.getRegole().getRighe() * tabellone.getRegole().getColonne());
+            if (tabellone.getRegole().getNumeroDadi() == 1)
+                this.dadoStrategy = new DadoSingoloStrategy();
+            else if (tabellone.getRegole().getNumeroDadi() == 2)
+                this.dadoStrategy = new DadoDoppioStrategy();
+        }
     }
 
     private void inizializzaGiocatori() {

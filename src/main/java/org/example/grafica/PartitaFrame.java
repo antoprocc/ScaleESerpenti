@@ -40,7 +40,9 @@ public class PartitaFrame extends JFrame implements Observer {
 
         // Inizializza il tabellone e la partita
         Tabellone tabellone = new Tabellone(regole);
-        partita = Partita.getInstance(tabellone, automatica, areaTestoTurni);
+        Partita.ISTANZA.init(tabellone, automatica, areaTestoTurni); // Inizializza l'istanza Singleton
+
+        partita = Partita.ISTANZA; // Assegna l'istanza Singleton alla variabile partita
 
         pannelloTabellone = new JPanel(new GridLayout(regole.getRighe(), regole.getColonne()));
         JScrollPane scrollPaneTabellone = new JScrollPane(pannelloTabellone);

@@ -13,7 +13,7 @@ public class CasellaPesca extends Casella {
 
     public CasellaPesca(int numeroCasella) {
         super(numeroCasella);
-        this.tipo = "pesca una carta";
+        this.tipo = "pesca";
         this.tipoPescato = "";
     }
 

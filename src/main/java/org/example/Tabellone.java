@@ -1,10 +1,10 @@
 package org.example;
 
 import org.example.caselle.*;
+import org.example.exceptions.ScalaNonValidaException;
+import org.example.exceptions.SerpenteNonValidoException;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import static org.example.grafica.PartitaFrame.caselleSpeciali;
 
@@ -30,47 +30,40 @@ public class Tabellone {
             specializzabili.put(i, true);
         }
 
-        //decido di inserire una scala e un serpente in proporzione 1/8 ciascuno rispetto al numero di caselle (come nella maggior parte dei tabelloni)
-        int nSerpenti = righe * colonne * 8 / 100; //uguale per le scale
-
-        aggiungiScaleESerpenti(nSerpenti);
+        aggiungiScale();
+        aggiungiSerpenti();
         aggiungiCaselleSpeciali(regole);
     }
 
-    private void aggiungiScaleESerpenti(int nSerpenti) {
-        Random random = new Random();
-        int righe = regole.getRighe();
+    private void aggiungiSerpenti() {
         int colonne = regole.getColonne();
-        int numeroCaselle = righe * colonne;
-
-        // SERPENTI
-        for (int i = 0; i < nSerpenti; i++) {
-            int bocca, coda;
-            do {
-                bocca = random.nextInt(2, numeroCaselle);
-                coda = random.nextInt(1, bocca);
-            } while (!specializzabili.get(bocca) || !specializzabili.get(coda) ||
-                    calcolaRiga(bocca, colonne) == calcolaRiga(coda, colonne));
-
-            sostituisciCasella(bocca, new CasellaSerpente(bocca, coda));
-            specializzabili.put(bocca, false);
-            specializzabili.put(coda, false);
-            caselleSpeciali.put(bocca, "serpente");
+        Set<Integer> serpenti = this.regole.getSerpenti().keySet();
+        for (int bocca : serpenti) {
+            int coda = this.regole.getSerpenti().get(bocca);
+            if (specializzabili.get(bocca) && specializzabili.get(coda) &&
+                    calcolaRiga(bocca, colonne) != calcolaRiga(coda, colonne)) { //non stessa riga
+                sostituisciCasella(bocca, new CasellaSerpente(bocca, coda));
+                specializzabili.put(bocca, false);
+                specializzabili.put(coda, false);
+                caselleSpeciali.put(bocca, "serpente");
+            } else
+                throw new SerpenteNonValidoException();
         }
+    }
 
-        // SCALE
-        for (int i = 0; i < nSerpenti; i++) {
-            int base, cima;
-            do {
-                base = random.nextInt(2, numeroCaselle - 1);
-                cima = random.nextInt(base + 1, numeroCaselle);
-            } while (!specializzabili.get(base) || !specializzabili.get(cima) ||
-                    calcolaRiga(base, colonne) == calcolaRiga(cima, colonne));
-
-            sostituisciCasella(base, new CasellaScala(base, cima));
-            specializzabili.put(base, false);
-            specializzabili.put(cima, false);
-            caselleSpeciali.put(base, "scala");
+    private void aggiungiScale() {
+        int colonne = regole.getColonne();
+        Set<Integer> scale = this.regole.getScale().keySet();
+        for (int base : scale) {
+            int cima = this.regole.getScale().get(base);
+            if (specializzabili.get(base) && specializzabili.get(cima) &&
+                    calcolaRiga(base, colonne) != calcolaRiga(cima, colonne)) { //non stessa riga
+                sostituisciCasella(base, new CasellaScala(base, cima));
+                specializzabili.put(base, false);
+                specializzabili.put(cima, false);
+                caselleSpeciali.put(base, "scala");
+            } else
+                throw new ScalaNonValidaException();
         }
     }
 

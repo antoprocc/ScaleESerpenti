@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class Regole implements Serializable {
 
@@ -16,9 +17,11 @@ public class Regole implements Serializable {
     private final boolean DivietoDiSosta;
     private final boolean doppioSei;
     private final boolean unDadoAllaFine;
+    private final Map<Integer,Integer> scale;
+    private final Map<Integer,Integer> serpenti;
 
     public Regole(int righe, int colonne, int numeroDadi, int numeroGiocatori, int casellaPanchina, int casellaLocanda,
-                  int casellaDadi, int casellaMolla, int casellaPesca, boolean DivietoDiSosta, boolean doppioSei, boolean unDadoAllaFine) {
+                  int casellaDadi, int casellaMolla, int casellaPesca, boolean DivietoDiSosta, boolean doppioSei, boolean unDadoAllaFine, Map<Integer, Integer> scale, Map<Integer, Integer> serpenti) {
         this.righe = righe;
         this.colonne = colonne;
         this.numeroDadi=numeroDadi;
@@ -31,6 +34,8 @@ public class Regole implements Serializable {
         this.DivietoDiSosta = DivietoDiSosta;
         this.doppioSei=doppioSei;
         this.unDadoAllaFine = unDadoAllaFine;
+        this.scale = scale;
+        this.serpenti = serpenti;
     }
 
     public int getNumeroDadi() {
@@ -64,4 +69,12 @@ public class Regole implements Serializable {
     public boolean isDoppioSei() {return doppioSei;}
 
     public boolean isUnDadoAllaFine() {return unDadoAllaFine;}
+
+    public Map<Integer, Integer> getScale() {
+        return scale;
+    }
+
+    public Map<Integer, Integer> getSerpenti() {
+        return serpenti;
+    }
 }

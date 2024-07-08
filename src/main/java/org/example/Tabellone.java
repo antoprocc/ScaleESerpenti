@@ -3,6 +3,8 @@ package org.example;
 import org.example.caselle.*;
 import org.example.exceptions.ScalaNonValidaException;
 import org.example.exceptions.SerpenteNonValidoException;
+import org.example.factory.CasellaFactory;
+import org.example.factory.CasellaSpecialeFactory;
 
 import java.util.*;
 
@@ -13,11 +15,13 @@ public class Tabellone {
     private final Map<Casella, Integer> tabellone;
     private final Map<Integer, Boolean> specializzabili;
     private final Regole regole;
+    private final CasellaFactory casellaFactory;
 
     public Tabellone(Regole regole) {
         this.specializzabili = new HashMap<>();
         this.tabellone = new HashMap<>();
         this.regole = regole;
+        this.casellaFactory = new CasellaSpecialeFactory();
         inizializzaTabellone();
     }
 
@@ -42,7 +46,8 @@ public class Tabellone {
             int coda = this.regole.getSerpenti().get(bocca);
             if (specializzabili.get(bocca) && specializzabili.get(coda) &&
                     calcolaRiga(bocca, colonne) != calcolaRiga(coda, colonne)) { //non stessa riga
-                sostituisciCasella(bocca, new CasellaSerpente(bocca, coda));
+                Casella serpente = casellaFactory.createCasella(bocca, "serpente", coda);
+                sostituisciCasella(bocca, serpente);
                 specializzabili.put(bocca, false);
                 specializzabili.put(coda, false);
                 caselleSpeciali.put(bocca, "serpente");
@@ -58,7 +63,8 @@ public class Tabellone {
             int cima = this.regole.getScale().get(base);
             if (specializzabili.get(base) && specializzabili.get(cima) &&
                     calcolaRiga(base, colonne) != calcolaRiga(cima, colonne)) { //non stessa riga
-                sostituisciCasella(base, new CasellaScala(base, cima));
+                Casella scala = casellaFactory.createCasella(base, "scala", cima);
+                sostituisciCasella(base, scala);
                 specializzabili.put(base, false);
                 specializzabili.put(cima, false);
                 caselleSpeciali.put(base, "scala");
@@ -83,7 +89,8 @@ public class Tabellone {
             do {
                 casella = random.nextInt(2, numeroCaselle);
             } while (!specializzabili.get(casella));
-            sostituisciCasella(casella, new CasellaPanchina(casella));
+            Casella panchina = casellaFactory.createCasella(casella, "panchina", 0);
+            sostituisciCasella(casella, panchina);
             specializzabili.put(casella, false);
             caselleSpeciali.put(casella, "panchina");
         }
@@ -93,7 +100,8 @@ public class Tabellone {
             do {
                 casella = random.nextInt(2, numeroCaselle);
             } while (!specializzabili.get(casella));
-            sostituisciCasella(casella, new CasellaLocanda(casella));
+            Casella locanda = casellaFactory.createCasella(casella, "locanda", 0);
+            sostituisciCasella(casella, locanda);
             specializzabili.put(casella, false);
             caselleSpeciali.put(casella, "locanda");
         }
@@ -103,7 +111,8 @@ public class Tabellone {
             do {
                 casella = random.nextInt(2, numeroCaselle);
             } while (!specializzabili.get(casella));
-            sostituisciCasella(casella, new CasellaDadi(casella));
+            Casella dadi = casellaFactory.createCasella(casella, "dadi", 0);
+            sostituisciCasella(casella, dadi);
             specializzabili.put(casella, false);
             caselleSpeciali.put(casella, "dadi");
         }
@@ -113,7 +122,8 @@ public class Tabellone {
             do {
                 casella = random.nextInt(2, numeroCaselle);
             } while (!specializzabili.get(casella));
-            sostituisciCasella(casella, new CasellaMolla(casella));
+            Casella molla = casellaFactory.createCasella(casella, "molla", 0);
+            sostituisciCasella(casella, molla);
             specializzabili.put(casella, false);
             caselleSpeciali.put(casella, "molla");
         }
@@ -123,7 +133,8 @@ public class Tabellone {
             do {
                 casella = random.nextInt(2, numeroCaselle);
             } while (!specializzabili.get(casella));
-            sostituisciCasella(casella, new CasellaPesca(casella));
+            Casella pesca = casellaFactory.createCasella(casella, "pesca", 0);
+            sostituisciCasella(casella, pesca);
             specializzabili.put(casella, false);
             caselleSpeciali.put(casella, "pesca");
         }

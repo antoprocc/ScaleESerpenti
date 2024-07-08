@@ -13,7 +13,6 @@ import org.example.observer.Observer;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public enum Partita {
     ISTANZA;
@@ -54,34 +53,7 @@ public enum Partita {
     }
 
     private void turno(Giocatore giocatore) {
-        if (giocatore.getTurniDaSaltare() > 0) {
-            if (giocatore.getDivietoDiSosta() == 0) {
-                giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() - 1);
-                appendiTestoTurni("\nIl giocatore " + giocatore.getNome() + " salta il turno, " + giocatore.getTurniDaSaltare()
-                        + " turni rimasti da saltare");
-                return;
-            } else {
-                giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta() - 1);
-                giocatore.setTurniDaSaltare(0);
-                appendiTestoTurni("\nIl giocatore " + giocatore.getNome() + " usa carta divieto di sosta e può tirare i dadi");
-            }
-        }
-
-        int passi;
-        Random random = new Random();
-
-        do {
-            appendiTestoTurni("\nTurno giocatore " + giocatore.getNome());
-            if (tabellone.getRegole().isUnDadoAllaFine() && giocatore.getCasella().getNumeroCasella() > traguardo.getNumeroCasella() - 6) {
-                passi = random.nextInt(6) + 1;
-                appendiTestoTurni("Il giocatore " + giocatore.getNome() + " tira un solo dado per la regola lancio di un solo dado");
-                appendiTestoTurni("dado 1: " + passi);
-                muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(), dadoStrategy);
-            } else {
-                passi = dadoStrategy.lancia();
-                muoviGiocatore(giocatore, passi, traguardo.getNumeroCasella(), dadoStrategy);
-            }
-        } while (passi == 12 && tabellone.getRegole().isDoppioSei());
+        giocatore.getStato().eseguiTurno(giocatore,tabellone, traguardo, dadoStrategy);
         if(verificaVittoria(giocatore))
             appendiTestoTurni("fine partita");
         else
@@ -97,10 +69,6 @@ public enum Partita {
         return false;
     }
 
-    private void muoviGiocatore(Giocatore giocatore, int passi, int traguardo, DadoStrategy dadoStrategy) {
-        giocatore.muovi(passi, traguardo, tabellone);
-        giocatore.getCasella().effetto(giocatore, dadoStrategy, traguardo, passi, tabellone);
-    }
 
     public void avviaPartita() {
         inizializzaGiocatori();

@@ -4,6 +4,8 @@ import org.example.Giocatore;
 import org.example.Partita;
 import org.example.Tabellone;
 import org.example.dadi.DadoStrategy;
+import org.example.state.StatoDivietoDiSosta;
+import org.example.state.StatoSosta;
 
 import java.util.Random;
 
@@ -29,12 +31,14 @@ public class CasellaPesca extends Casella {
                     messaggio=("... Ha pescato: carta " + tipoPescato);
                     Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 1);
+                    giocatore.setStato(new StatoSosta());
                     break;
                 case 1: // locanda
                     tipoPescato = "locanda";
                     messaggio=("... Ha pescato: carta " + tipoPescato);
                     Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 3);
+                    giocatore.setStato(new StatoSosta());
                     break;
                 case 2: // dadi
                     tipoPescato = "dadi";
@@ -57,6 +61,7 @@ public class CasellaPesca extends Casella {
                     messaggio=("... Ha pescato: carta " + tipoPescato);
                     Partita.appendiTestoTurni(messaggio);
                     giocatore.setDivietoDiSosta(giocatore.getDivietoDiSosta()+1);
+                    giocatore.setStato(new StatoDivietoDiSosta());
                     break;
             }
         }
@@ -68,12 +73,14 @@ public class CasellaPesca extends Casella {
                     messaggio=("... Ha pescato: carta " + tipoPescato);
                     Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 1);
+                    giocatore.setStato(new StatoSosta());
                     break;
                 case 1: // locanda
                     tipoPescato = "locanda";
                     messaggio=("... Ha pescato: carta " + tipoPescato);
                     Partita.appendiTestoTurni(messaggio);
                     giocatore.setTurniDaSaltare(giocatore.getTurniDaSaltare() + 3);
+                    giocatore.setStato(new StatoSosta());
                     break;
                 case 2: // dadi
                     tipoPescato = "dadi";

@@ -4,6 +4,8 @@ import org.example.caselle.Casella;
 import org.example.caselle.CasellaBase;
 import org.example.observer.Observable;
 import org.example.observer.Observer;
+import org.example.state.GiocatoreState;
+import org.example.state.StatoNormale;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +18,15 @@ public class Giocatore implements Observable {
     private int divietoDiSosta;
     private int turniDaSaltare;
     private List<Observer> observers;
+    private GiocatoreState stato;
 
     public Giocatore(String nome){
         this.nome=nome;
-        casella=new CasellaBase(0);
-        divietoDiSosta =0;
-        turniDaSaltare=0;
+        this.casella=new CasellaBase(0);
+        this.divietoDiSosta =0;
+        this.turniDaSaltare=0;
         this.observers=new ArrayList<>();
+        this.stato=new StatoNormale();
     }
 
     public void muovi(int passi, int traguardo, Tabellone tabellone) {
@@ -64,6 +68,13 @@ public class Giocatore implements Observable {
         return nome;
     }
 
+    public GiocatoreState getStato() {
+        return stato;
+    }
+
+    public void setStato(GiocatoreState stato) {
+        this.stato = stato;
+    }
 
     @Override
     public void addObserver(Observer observer) {

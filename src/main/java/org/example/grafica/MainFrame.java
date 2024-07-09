@@ -377,8 +377,8 @@ public class MainFrame extends JFrame {
 
         JButton bottoneSalva = new JButton("Salva"); // Crea un pulsante "Salva"
         bottoneSalva.addActionListener(e -> {
-            // Salva le regole extra e le posizioni delle caselle speciali
-            Regole regole = salvaRegoleExtra(casellaPanchina, casellaLocanda, casellaMolla, casellaDadi, casellaPesca);
+            // Salva le regole e le posizioni delle caselle speciali
+            Regole regole = salvaRegole(casellaPanchina, casellaLocanda, casellaMolla, casellaDadi, casellaPesca);
             salvaRegoleSuFile(regole); // Salva le regole su file
             dialogRegoleExtra.dispose(); // Chiude la finestra di dialogo
         });
@@ -390,16 +390,24 @@ public class MainFrame extends JFrame {
         dialogRegoleExtra.setVisible(true); // Rende la finestra di dialogo visibile
     }
 
-    // Metodo per salvare le regole extra
-    private Regole salvaRegoleExtra(int casellaPanchina, int casellaLocanda, int casellaMolla, int casellaDadi, int casellaPesca) {
+    private Regole salvaRegole(int casellaPanchina, int casellaLocanda, int casellaMolla, int casellaDadi, int casellaPesca) {
         // Recupera i valori delle checkbox
         boolean divietoDiSosta = checkDivietoDiSosta.isSelected();
         boolean doppioSei = checkDoppioSei.isSelected();
         boolean unDadoAllaFine = checkLancioUnSoloDado.isSelected();
 
-        // Crea un nuovo oggetto Regole con i valori selezionati
-        return new Regole(righe, colonne, numeroDadi, numeroGiocatori, casellaPanchina, casellaLocanda, casellaDadi, casellaMolla, casellaPesca, divietoDiSosta, doppioSei, unDadoAllaFine, scale, serpenti);
-
+        return new Regole.Builder(numeroDadi,righe,colonne,numeroGiocatori)
+                .casellaLocanda(casellaLocanda)
+                .casellaPanchina(casellaPanchina)
+                .casellaDadi(casellaDadi)
+                .casellaMolla(casellaMolla)
+                .casellaPesca(casellaPesca)
+                .DivietoDiSosta(divietoDiSosta)
+                .doppioSei(doppioSei)
+                .unDadoAllaFine(unDadoAllaFine)
+                .scale(scale)
+                .serpenti(serpenti)
+                .build();
     }
 
     // Metodo per salvare le regole su file

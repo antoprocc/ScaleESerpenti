@@ -20,39 +20,113 @@ public class Regole implements Serializable {
     private final Map<Integer,Integer> scale;
     private final Map<Integer,Integer> serpenti;
 
-    public Regole(int righe, int colonne, int numeroDadi, int numeroGiocatori, int casellaPanchina, int casellaLocanda,
-                  int casellaDadi, int casellaMolla, int casellaPesca, boolean DivietoDiSosta, boolean doppioSei, boolean unDadoAllaFine, Map<Integer, Integer> scale, Map<Integer, Integer> serpenti) {
-        this.righe = righe;
-        this.colonne = colonne;
-        this.numeroDadi=numeroDadi;
-        this.numeroGiocatori=numeroGiocatori;
-        this.casellaPanchina = casellaPanchina;
-        this.casellaLocanda=casellaLocanda;
-        this.casellaDadi = casellaDadi;
-        this.casellaMolla= casellaMolla;
-        this.casellaPesca = casellaPesca;
-        this.DivietoDiSosta = DivietoDiSosta;
-        this.doppioSei=doppioSei;
-        this.unDadoAllaFine = unDadoAllaFine;
-        this.scale = scale;
-        this.serpenti = serpenti;
+    public static class Builder{
+        //parametri obbigatori
+        private final int numeroDadi;
+        private final int righe;
+        private final int colonne;
+        private final int numeroGiocatori;
+
+        //parametri opzionali
+        private int casellaPanchina;
+        private int casellaLocanda;
+        private int casellaDadi;
+        private int casellaMolla;
+        private int casellaPesca;
+        private boolean DivietoDiSosta;
+        private boolean doppioSei;
+        private boolean unDadoAllaFine;
+        private Map scale;
+        private Map<Integer,Integer> serpenti;
+
+        public Builder(int numeroDadi, int righe, int colonne, int numeroGiocatori){
+            this.numeroDadi=numeroDadi;
+            this.righe=righe;
+            this.colonne=colonne;
+            this.numeroGiocatori=numeroGiocatori;
+        }
+
+        public Builder casellaPanchina(int val){
+            casellaPanchina=val;
+            return this;
+        }
+
+        public Builder casellaLocanda(int val){
+            casellaLocanda=val;
+            return this;
+        }
+
+        public Builder casellaDadi(int val){
+            casellaDadi=val;
+            return this;
+        }
+
+        public Builder casellaMolla(int val){
+            casellaMolla=val;
+            return this;
+        }
+
+        public Builder casellaPesca(int val){
+            casellaPesca=val;
+            return this;
+        }
+
+        public Builder DivietoDiSosta(boolean val){
+            DivietoDiSosta=val;
+            return this;
+        }
+
+        public Builder doppioSei(boolean val){
+            doppioSei=val;
+            return this;
+        }
+
+        public Builder unDadoAllaFine(boolean val){
+            unDadoAllaFine=val;
+            return this;
+        }
+
+        public Builder scale(Map<Integer,Integer> val){
+            scale=val;
+            return this;
+        }
+
+        public Builder serpenti(Map<Integer,Integer> val){
+            serpenti=val;
+            return this;
+        }
+
+        public Regole build(){
+            return new Regole(this);
+        }
+    }//Builder
+
+
+
+    private Regole(Builder builder){
+        this.righe = builder.righe;
+        this.colonne = builder.colonne;
+        this.numeroDadi=builder.numeroDadi;
+        this.numeroGiocatori=builder.numeroGiocatori;
+        this.casellaPanchina = builder.casellaPanchina;
+        this.casellaLocanda=builder.casellaLocanda;
+        this.casellaMolla= builder.casellaMolla;
+        this.casellaDadi=builder.casellaDadi;
+        this.casellaPesca = builder.casellaPesca;
+        this.DivietoDiSosta = builder.DivietoDiSosta;
+        this.doppioSei=builder.doppioSei;
+        this.unDadoAllaFine = builder.unDadoAllaFine;
+        this.scale = builder.scale;
+        this.serpenti = builder.serpenti;
     }
 
-    public int getNumeroDadi() {
-        return numeroDadi;
-    }
+    public int getNumeroDadi() {return numeroDadi;}
 
-    public int getRighe() {
-        return righe;
-    }
+    public int getRighe() {return righe;}
 
-    public int getColonne() {
-        return colonne;
-    }
+    public int getColonne() {return colonne;}
 
-    public int getNumeroGiocatori() {
-        return numeroGiocatori;
-    }
+    public int getNumeroGiocatori() {return numeroGiocatori;}
 
     public int getCasellaPanchina() { return casellaPanchina; }
 

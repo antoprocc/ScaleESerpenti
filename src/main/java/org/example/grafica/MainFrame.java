@@ -242,6 +242,9 @@ public class MainFrame extends JFrame {
                     if (occupiedPositions.contains(inizio) || occupiedPositions.contains(fine)) {
                         throw new IllegalArgumentException("Scala " + (i + 1) + ": posizioni duplicate.");
                     }
+                    if (calcolaRiga(inizio, colonne) == calcolaRiga(fine, colonne)){
+                        throw new IllegalArgumentException("Scala " + (i + 1) + ": non può collegare caselle sulla stessa riga");
+                    }
 
 
                     scale.put(inizio, fine); // Aggiunge la posizione alla mappa delle scale
@@ -259,6 +262,9 @@ public class MainFrame extends JFrame {
                     }
                     if (occupiedPositions.contains(inizio) || occupiedPositions.contains(fine)) {
                         throw new IllegalArgumentException("Serpente " + (i + 1) + ": posizioni duplicate.");
+                    }
+                    if (calcolaRiga(inizio, colonne) == calcolaRiga(fine, colonne)){
+                        throw new IllegalArgumentException("Serpente " + (i + 1) + ": non può collegare caselle sulla stessa riga");
                     }
 
 

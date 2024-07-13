@@ -1,7 +1,7 @@
 package org.example.iterator;
 
 
-import org.example.Giocatore;
+import org.example.principale.Giocatore;
 import java.util.List;
 
 public class GiocatoreListIterator implements GiocatoreIterator{

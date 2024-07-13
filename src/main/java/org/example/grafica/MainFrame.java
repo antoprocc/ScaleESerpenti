@@ -1,6 +1,6 @@
 package org.example.grafica;
 
-import org.example.Regole;
+import org.example.principale.Regole;
 
 import javax.swing.*; // Importazione delle classi necessarie per l'interfaccia grafica Swing
 import java.awt.*; // Importazione delle classi necessarie per la gestione del layout e degli eventi

@@ -1,13 +1,13 @@
 package org.example.state;
 
-import org.example.Giocatore;
-import org.example.Tabellone;
+import org.example.principale.Giocatore;
+import org.example.principale.Tabellone;
 import org.example.caselle.Casella;
 import org.example.dadi.DadoStrategy;
 
 import java.util.Random;
 
-import static org.example.Partita.appendiTestoTurni;
+import static org.example.principale.Partita.appendiTestoTurni;
 
 public class StatoNormale implements GiocatoreState{
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.principale;
 
 import org.example.caselle.Casella;
 import org.example.caselle.CasellaBase;
@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Giocatore implements Observable {
 
     private Casella casella;
-    private final String nome;
+    private String nome;
     private int divietoDiSosta;
     private int turniDaSaltare;
     private List<Observer> observers;
@@ -67,6 +67,8 @@ public class Giocatore implements Observable {
     public String getNome() {
         return nome;
     }
+
+    public void setNome(String nome) {this.nome = nome;}
 
     public GiocatoreState getStato() {
         return stato;

@@ -1,6 +1,7 @@
-package org.example;
+package org.example.principale;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Regole implements Serializable {
@@ -36,7 +37,7 @@ public class Regole implements Serializable {
         private boolean DivietoDiSosta;
         private boolean doppioSei;
         private boolean unDadoAllaFine;
-        private Map scale;
+        private Map<Integer,Integer> scale;
         private Map<Integer,Integer> serpenti;
 
         public Builder(int numeroDadi, int righe, int colonne, int numeroGiocatori){

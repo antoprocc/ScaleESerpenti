@@ -1,9 +1,9 @@
 package org.example.grafica;
 
-import org.example.Giocatore;
-import org.example.Partita;
-import org.example.Regole;
-import org.example.Tabellone;
+import org.example.principale.Giocatore;
+import org.example.principale.Partita;
+import org.example.principale.Regole;
+import org.example.principale.Tabellone;
 import org.example.observer.Observer;
 
 import javax.swing.*;

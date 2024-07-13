@@ -1,4 +1,4 @@
-package org.example;
+package org.example.principale;
 
 import org.example.caselle.Casella;
 import org.example.caselle.CasellaBase;

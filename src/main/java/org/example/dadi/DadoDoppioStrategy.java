@@ -1,6 +1,6 @@
 package org.example.dadi;
 
-import org.example.Partita;
+import org.example.principale.Partita;
 
 public class DadoDoppioStrategy implements DadoStrategy{
     @Override

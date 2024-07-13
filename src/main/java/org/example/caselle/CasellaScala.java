@@ -1,8 +1,8 @@
 package org.example.caselle;
 
-import org.example.Giocatore;
-import org.example.Partita;
-import org.example.Tabellone;
+import org.example.principale.Giocatore;
+import org.example.principale.Partita;
+import org.example.principale.Tabellone;
 import org.example.dadi.DadoStrategy;
 
 public class CasellaScala extends Casella {

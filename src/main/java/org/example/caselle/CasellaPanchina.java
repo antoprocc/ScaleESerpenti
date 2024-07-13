@@ -1,7 +1,7 @@
 package org.example.caselle;
 
-import org.example.Giocatore;
-import org.example.Tabellone;
+import org.example.principale.Giocatore;
+import org.example.principale.Tabellone;
 import org.example.dadi.DadoStrategy;
 import org.example.state.StatoSosta;
 

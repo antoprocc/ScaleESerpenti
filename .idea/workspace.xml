@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="implementazione pattern observer per movimento pedine">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0475f8b0-ef8f-4b2e-b34c-360f56b804bc" name="Changes" comment="fix package">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/CartaNonValidaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/CasellaNonValidaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/DestinazioneNonValidaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/GiocatoreNonTrovatoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/MovimentoNonValidoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/PartitaNonValidaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/CasellaSerpenteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/GiocatoreTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TabelloneTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/grafica/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/grafica/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/grafica/PartitaFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/grafica/PartitaFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/caselle/Casella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/caselle/Casella.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/principale/Partita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/principale/Partita.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -52,28 +59,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.MainFrame.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.general",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainFrame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CasellaSerpenteTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CasellaSerpenteTest.testEffetto.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CasellaTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DadoDoppioStrategyTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GiocatoreTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TabelloneTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/anton/IdeaProjects/ScaleESerpenti/src/main/java/org/example/caselle&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/anton/IdeaProjects/Dspor7&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -99,7 +114,18 @@
       <workItem from="1719653751993" duration="8097000" />
       <workItem from="1719752946114" duration="36170000" />
       <workItem from="1720170754545" duration="5403000" />
-      <workItem from="1720253627308" duration="18789000" />
+      <workItem from="1720253627308" duration="26752000" />
+      <workItem from="1720300622703" duration="5334000" />
+      <workItem from="1720345401260" duration="28133000" />
+      <workItem from="1720429899520" duration="25824000" />
+      <workItem from="1720603436168" duration="587000" />
+      <workItem from="1720824436920" duration="591000" />
+      <workItem from="1720825063272" duration="857000" />
+      <workItem from="1720865943877" duration="260000" />
+      <workItem from="1720868554675" duration="176000" />
+      <workItem from="1720881580784" duration="13982000" />
+      <workItem from="1720954546909" duration="5251000" />
+      <workItem from="1720976716731" duration="1352000" />
     </task>
     <task id="LOCAL-00001" summary="Prima commit.">
       <option name="closed" value="true" />
@@ -373,24 +399,112 @@
       <option name="project" value="LOCAL" />
       <updated>1720282139213</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix versione sdk">
+      <option name="closed" value="true" />
+      <created>1720284209280</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1720284209280</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fix primo turno giocatore 1">
+      <option name="closed" value="true" />
+      <created>1720293853942</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1720293853942</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix grafica">
+      <option name="closed" value="true" />
+      <created>1720304758901</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1720304758901</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fix pattern singleton">
+      <option name="closed" value="true" />
+      <created>1720305918380</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1720305918380</updated>
+    </task>
+    <task id="LOCAL-00039" summary="aggiunta manuale di scale e serpenti">
+      <option name="closed" value="true" />
+      <created>1720368165744</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1720368165744</updated>
+    </task>
+    <task id="LOCAL-00040" summary="implementazione pattern state">
+      <option name="closed" value="true" />
+      <created>1720443025603</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1720443025603</updated>
+    </task>
+    <task id="LOCAL-00041" summary="implementazione pattern factory">
+      <option name="closed" value="true" />
+      <created>1720443636204</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1720443636204</updated>
+    </task>
+    <task id="LOCAL-00042" summary="implementazione pattern builder nuova">
+      <option name="closed" value="true" />
+      <created>1720545710228</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1720545710228</updated>
+    </task>
+    <task id="LOCAL-00043" summary="aggiunta controllo scale e serpenti">
+      <option name="closed" value="true" />
+      <created>1720603466456</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1720603466456</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix package">
+      <option name="closed" value="true" />
+      <created>1720911650251</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1720911650251</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix package">
+      <option name="closed" value="true" />
+      <created>1720911686483</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1720911686483</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implementazione strategy dado" />
-    <MESSAGE value="implementazione effetti caselle" />
-    <MESSAGE value="aggiunta di iterator, metodo di gioco della partita e &quot;lancio di un solo dado&quot;" />
-    <MESSAGE value="fix costruttore" />
-    <MESSAGE value="fix vincitore" />
-    <MESSAGE value="aggiunta stampe per test" />
-    <MESSAGE value="update" />
-    <MESSAGE value="fixing cambio casella" />
-    <MESSAGE value="main di testing" />
-    <MESSAGE value="aggiunta toString()" />
-    <MESSAGE value="fix logica" />
     <MESSAGE value="fix stampe" />
     <MESSAGE value="aggiunta turno manuale" />
     <MESSAGE value="fix warning" />
@@ -405,6 +519,17 @@
     <MESSAGE value="fix scelta scala (escluso 1)" />
     <MESSAGE value="fix cambio casella" />
     <MESSAGE value="implementazione pattern observer per movimento pedine" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementazione pattern observer per movimento pedine" />
+    <MESSAGE value="fix versione sdk" />
+    <MESSAGE value="fix primo turno giocatore 1" />
+    <MESSAGE value="fix grafica" />
+    <MESSAGE value="fix pattern singleton" />
+    <MESSAGE value="aggiunta manuale di scale e serpenti" />
+    <MESSAGE value="implementazione pattern state" />
+    <MESSAGE value="implementazione pattern factory" />
+    <MESSAGE value="implementazione pattern builder" />
+    <MESSAGE value="implementazione pattern builder nuova" />
+    <MESSAGE value="aggiunta controllo scale e serpenti" />
+    <MESSAGE value="fix package" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix package" />
   </component>
 </project>

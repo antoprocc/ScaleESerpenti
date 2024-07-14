@@ -30,6 +30,10 @@ public abstract class Casella {
         this.numeroCasella = numeroCasella;
     }
 
+    public void setTipo(String tipo) {this.tipo = tipo;}
+
+    public String getTipo() {return tipo;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

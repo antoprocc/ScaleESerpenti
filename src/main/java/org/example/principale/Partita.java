@@ -118,4 +118,8 @@ public enum Partita {
     public List<Giocatore> getGiocatori() {
         return giocatori;
     }
+
+    public static void setAreaTestoTurni(JTextArea areaTestoTurni) {
+        Partita.areaTestoTurni = areaTestoTurni;
+    }
 }
